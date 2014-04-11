@@ -26,7 +26,7 @@ function ToggleBase(element){
 
 }
 
-ToggleBase.prototype.toggleButtonLogic = function(e){
+ToggleBase.prototype.toggleButtonClickEvent = function (e){
 	
 	if(this.state){
 		
@@ -37,17 +37,7 @@ ToggleBase.prototype.toggleButtonLogic = function(e){
 	}
 	
 	e.target.value = this.state;
-};
-
-ToggleBase.prototype.toggleButtonStyle = function(s){
 	
-	this.style = s;
-};
-
-
-ToggleBase.prototype.toggleButtonClickEvent = function (e){
-	
-	this.toggleButtonLogic(e);
 };
 
 ToggleBase.prototype.toggleButtonOverEvent = function (e){};
