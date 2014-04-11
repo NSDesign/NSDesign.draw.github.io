@@ -1,0 +1,33 @@
+body{
+
+	width: 100%;
+	height: 100%;
+	margin: 5px;
+	overflow: hidden;
+}
+
+#ToggleButton{
+	background-color: black;
+	color: white;
+	padding: 6px;
+	
+	outline: solid black 2px;
+	outline-offset: 1px;
+	border: none;
+	border-image*: none;
+}
+
+#ToggleButton:hover {
+	outline: solid black 4px;
+}
+
+#ToggleButton:active {
+	outline: none;
+}
+
+#ToggleButton:focus {
+	background-color: white;
+	color: black;
+	
+	outline: solid black 2px;
+}

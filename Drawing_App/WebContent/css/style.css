@@ -1,0 +1,132 @@
+body{
+	background: #FFFFFF;
+	margin: 0px;
+	padding: 0px;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	overflow: hidden;
+	
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+div{
+	background: white;
+	padding: 5px 5px 0px 5px;
+	
+}
+
+hgroup{
+	/*height: 20px;*/
+	margin: 0px;
+	padding: 5px 5px 15px 5px;
+
+	border-bottom: 1px solid black;
+
+	text-decoration: none;
+}
+
+
+<!--
+UI TOOLBAR
+-->
+
+div{}
+
+.UI_ToolBar{	
+	position: absolute;
+	top: 120px;
+	left: 10px;
+	width: 50px;
+	border: 1px solid black;
+	padding: 0px;
+	margin: 0px;
+	z-index: 1;
+}
+
+.UI_ToolBarHandle{	
+	background: black;
+	height: 20px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.UI_ToolBarItems{
+	list-style-type: none;
+	background: #FFFFFF;
+	border: 0px solid green;
+	padding: 0px;
+	margin: 0px;
+}
+
+.UI_ToolBarItem{
+	border: 0px solid yellow;
+	padding: 0px;
+	margin: 0px;
+}
+
+
+
+<!--
+UI LISTS
+TOOLBAR
+-->
+
+li{
+	list-style-type: none;
+}
+
+ol ol{
+	list-style-type: none;
+	padding-left: 0px;
+}
+
+<!--
+UI LISTS
+MAIN MENU
+-->
+
+div{}
+
+.UI_MainMenu{
+	width: 100%;
+	
+}
+
+.UI_ObjectProperties{
+	width: 100%;
+	
+}
+
+
+<!--
+UI DRAWING CANVAS
+-->
+
+canvas{}
+
+.UI_DrawingCanvas{
+	margin: 0%;
+	background-image: url("../images/Grid_10x10_px.png");
+	background-position: top left;
+	background-repeat: repeat;
+	background-attachment: fixed;
+	border: 1px solid black;
+	
+}
+
+<!--
+UI TEST OUTPUT
+-->
+
+div{}
+
+.UI_TestOutput{
+	border: 2px solid black;
+	margin: 5px;
+	z-index: 1000;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="WebContent/js/main.js"></script>
+	
+	<script type="text/javascript" src="WebContent/js/helpers/array.js"></script>
+	<script type="text/javascript" src="WebContent/js/helpers/managerbase.js"></script>
+	
+	<script type="text/javascript" src="WebContent/js/mousemanager.js"></script>
+	<script type="text/javascript" src="WebContent/js/uimanager.js"></script>
+	<script type="text/javascript" src="WebContent/js/objectproperties.js"></script>
+	<script type="text/javascript" src="WebContent/js/canvas.js"></script>
+	<script type="text/javascript" src="WebContent/js/tools.js"></script>
+	<script type="text/javascript" src="WebContent/js/toolbar.js"></script>
+	<script type="text/javascript" src="WebContent/js/toolbarmanager.js"></script>
+	
+	<script type="text/javascript" src="WebContent/js/testoutput.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="WebContent/css/style.css">
+	
+	<title>Drawing Application</title>
+</head>
+<body>
+	<div id="MainMenu" class="UI_MainMenu">
+		<hgroup>Main Menu</hgroup>
+	</div>
+	
+	<div id="ObjectProperties" class="UI_ObjectProperties">
+		<hgroup>Object Properties</hgroup>
+	</div>
+	
+	<div id="ToolBar" class="UI_ToolBar" data-binding="toolBar">
+	
+		<hgroup>Tool Bar</hgroup>
+		
+		<div id="ToolBarHandle" class="UI_ToolBarHandle" ></div>
+		
+		<ol id="ToolBarItems" class="UI_ToolBarItems" >
+			<ol>
+				<li id="ToolBarItem_0.0" class="UI_ToolBarItem"><img alt="Select Object" src="WebContent/images/Select_Object_Normal.png"></li>
+				<li id="ToolBarItem_1.0" class="UI_ToolBarItem"><img alt="Select Element" src="WebContent/images/Select_Element_Normal.png"></li>
+			</ol>
+			<ol>
+				<li id="ToolBarItem_2.0" class="UI_ToolBarItem"><img alt="Create Rectangle" src="WebContent/images/Create_Rectangle_Normal.png"></li>
+				<li id="ToolBarItem_3.0" class="UI_ToolBarItem"><img alt="Create Ellipse" src="WebContent/images/Create_Ellipse_Normal.png"></li>
+				<li id="ToolBarItem_4.0" class="UI_ToolBarItem"><img alt="Create Line" src="WebContent/images/Create_Line_Normal.png"></li>	
+				<li id="ToolBarItem_5.0" class="UI_ToolBarItem"><img alt="Create Curve" src="WebContent/images/Create_Curve_Normal.png"></li>	
+				<li id="ToolBarItem_6.0" class="UI_ToolBarItem"><img alt="Create Text" src="WebContent/images/Create_Text_Normal.png"></li>			
+			</ol>
+			<ol>
+				<li id="ToolBarItem_7.0" class="UI_ToolBarItem"><img alt="Canvas Zoom" src="WebContent/images/Canvas_Zoom_Normal.png"></li>
+				<li id="ToolBarItem_8.0" class="UI_ToolBarItem"><img alt="Canvas Pan" src="WebContent/images/Canvas_Pan_Normal.png"></li>
+			</ol>
+						
+		</ol>		
+	</div>
+	
+	<div id="TestControl" style="width: 500px; height: auto; margin: auto; text-align: center;"></div>
+	
+	<canvas id="DrawingCanvas" class="UI_DrawingCanvas" data-binding="drawingCanvas"></canvas>
+	
+	<div id="TestOutput" class="UI_TestOutput"></div>
+</body>
+</html>
