@@ -1,38 +1,56 @@
 
+
+window.onload = windowLoaded;
+
+var toggleButton;
+function windowLoaded(){
+	
+	toggleButton = new ToggleButton();
+
+}
+
 function ToggleButton(){
 
 	ToggleBase.call(this, "ToggleButton");
-	
+
 }
 
 ToggleButton.prototype = Object.create(ToggleBase.prototype);
 
 
-
-
-ToggleBase.prototype.toggleButtonClickEvent = function (e){
+ToggleButton.prototype.toggleButtonClickEvent = function (e){
+	
+	var self = eval(e.currentTarget.id);
+	self = new self();
+	
+	//console.log("ON CLICK : ", self, toggleButton);
 	
 	this.style.outlineOffset = "1px";
 	this.style.padding = "6px";
 	this.style.textAlign = "center";
 	
-	if(this.state){
+	if(toggleButton.state){
 		
-		this.state = false;	
+		toggleButton.state = false;
 		
 		this.style.backgroundColor = "black";
 		this.style.color = "white";
 		this.style.outline = "solid black 2px";	
 	}else{
 		
-		this.state = true;
+		toggleButton.state = true;
 		
 		this.style.backgroundColor = "white";
 		this.style.color = "black";
 		this.style.outline = "solid black 2px";	
 	}
 	
-	e.target.value = this.state;
+	e.currentTarget.value = toggleButton.state;
+	
+	
+	
+	//console.log("TOGGLEBUTTON", self);
+	toggleButton.dispatchCustomEvent(e);
 	
 };
 
