@@ -1,3 +1,4 @@
+
 body{
 	background: #FFFFFF;
 	margin: 0px;
@@ -30,6 +31,25 @@ hgroup{
 	text-decoration: none;
 }
 
+<!--
+UI LISTS
+TOOLBAR
+-->
+
+li{
+	display: list-item;
+	list-style-type: none;
+	text-align: left;
+}
+
+ol{
+	list-style-type: none;
+}
+
+ol ol{
+	list-style-type: none;
+	padding-left: 0px;
+}
 
 <!--
 UI TOOLBAR
@@ -51,39 +71,143 @@ div{}
 .UI_ToolBarHandle{	
 	background: black;
 	height: 20px;
-	padding: 0px;
-	margin: 0px;
+	padding: inherit;
+	margin: inherit;
 }
 
 .UI_ToolBarItems{
 	list-style-type: none;
-	background: #FFFFFF;
-	border: 0px solid green;
-	padding: 0px;
-	margin: 0px;
+	padding: inherit;
+	margin: inherit;
+}
+
+.ToolBarItems_Section{
+
+	border-bottom: solid black 1px;
+	border-collapse: separate;
+
+}
+
+#ToolBarItems_Select{
+
+}
+
+#ToolBarItems_Create{
+
+}
+
+#ToolBarItems_Canvas{
+
 }
 
 .UI_ToolBarItem{
-	border: 0px solid yellow;
-	padding: 0px;
-	margin: 0px;
+	padding: inherit;
+	margin: inherit;
+	width: 50px;
+	height: 50px;
+	overflow: hidden;
 }
 
-
-
-<!--
-UI LISTS
-TOOLBAR
--->
-
-li{
-	list-style-type: none;
+#ToolBarItem_0 img{
+	position: relative;
+	top: 0px;
+	left: 0px;
+	
+}
+#ToolBarItem_0 img:hover {
+	position: relative;
+	top: 0px;
+	left: -50px;
 }
 
-ol ol{
-	list-style-type: none;
-	padding-left: 0px;
+#ToolBarItem_1 img{
+	position: relative;
+	top: -50px;
+	left: 0px;
 }
+#ToolBarItem_1 img:hover {
+	position: relative;
+	top: -50px;
+	left: -50px;
+}
+
+#ToolBarItem_2 img{
+	position: relative;
+	top: -100px;
+	left: 0px;
+}
+#ToolBarItem_2 img:hover {
+	position: relative;
+	top: -100px;
+	left: -50px;
+}
+
+#ToolBarItem_3 img{
+	position: relative;
+	top: -150px;
+	left: 0px;
+}
+#ToolBarItem_3 img:hover {
+	position: relative;
+	top: -150px;
+	left: -50px;
+}
+
+#ToolBarItem_4 img{
+	position: relative;
+	top: -200px;
+	left: 0px;
+}
+#ToolBarItem_4 img:hover {
+	position: relative;
+	top: -200px;
+	left: -50px;
+}
+
+#ToolBarItem_5 img{
+	position: relative;
+	top: -250px;
+	left: 0px;
+}
+#ToolBarItem_5 img:hover {
+	position: relative;
+	top: -250px;
+	left: -50px;
+}
+
+#ToolBarItem_6 img{
+	position: relative;
+	top: -300px;
+	left: 0px;
+}
+#ToolBarItem_6 img:hover {
+	position: relative;
+	top: -300px;
+	left: -50px;
+}
+
+#ToolBarItem_7 img{
+	position: relative;
+	top: -350px;
+	left: 0px;
+}
+#ToolBarItem_7 img:hover {
+	position: relative;
+	top: -350px;
+	left: -50px;
+}
+
+#ToolBarItem_8 img{
+	position: relative;
+	top: -400px;
+	left: 0px;
+}
+#ToolBarItem_8 img:hover {
+	position: relative;
+	top: -400px;
+	left: -50px;
+}
+
 
 <!--
 UI LISTS
