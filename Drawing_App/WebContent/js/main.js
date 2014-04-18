@@ -21,12 +21,12 @@ function mainApp(){
 		//console.log("mainApp Instantiated : " + this.init);
 		
 		
-		this.drawingCanvas = new drawingCanvas();
+		this.DrawingCanvas = new drawingCanvas();
 		//this.drawingCanvas.initCanvas();
 		
 		this.uiManager = new uiManager();
 	
-		this.mouseManager = new mouseManager();
+		//this.mouseManager = new mouseManager();
 		
 		//initTestOutput();
 	

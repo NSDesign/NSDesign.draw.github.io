@@ -46,6 +46,7 @@ mouseManager.prototype.initMouseManager = function(){
 	*/
 };
 
+/*
 function registerEvent(e){
 	
 	if(mainApp.uiManager.currentContext != e.target){
@@ -53,3 +54,5 @@ function registerEvent(e){
 	}
 	
 }
+
+*/

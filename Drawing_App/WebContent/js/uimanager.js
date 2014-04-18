@@ -26,6 +26,6 @@ function uiManager(){
 uiManager.prototype.manageContext = function(context){
 	
 	this.currentContext = context;
-	new objectProperties().createObjectProperties(eval("mainApp" + "." + context.getAttribute("data-binding")));
-	
+	new objectProperties().createObjectProperties(eval("mainApp" + "." + this.currentContext));
+
 };

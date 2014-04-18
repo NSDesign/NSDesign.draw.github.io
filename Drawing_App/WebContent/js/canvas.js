@@ -2,21 +2,21 @@
 function drawingCanvas(){
 	
 	this.name = "DrawingCanvas";
-	this.object = document.getElementById(this.name);
+	this.element = document.getElementById(this.name);
 	this.objectPropertiesDefault = [
 		["width", "input", "number", this.initCanvas()[0]],
 		["height", "input", "number", this.initCanvas()[1]],
 		["show grid", "toggle", "button", true],
 		["grid size", "input", "number", this.setCanvasGrid(5)],		
 	];
-	this.click = this.object.addEventListener("click", registerEvent, false);
+	this.element.addEventListener("click", this.drawingCanvasClickEvent, false);
 
 };
 
 	
 drawingCanvas.prototype.initCanvas = function(){
 	
-	var c = this.object;
+	var c = this.element;
 	//var context = c.getContext("2d");
 
 	c.setAttribute("width", window.innerWidth - 2); // (Border Top + Bottom : 2) = 2                                           // - (((5 / 100) * window.innerWidth) * 2));
@@ -28,7 +28,7 @@ drawingCanvas.prototype.initCanvas = function(){
 
 drawingCanvas.prototype.setCanvasGrid = function(i){
 	
-	var c = this.object;
+	var c = this.element;
 	var image = 'WebContent/images/Grid_' + i + 'x' + i + '_px.png';	
 	c.style.backgroundImage = "url(" + image + ")"; 
 	c.style.position = "top left";
@@ -38,3 +38,9 @@ drawingCanvas.prototype.setCanvasGrid = function(i){
 	return i;
 };
 
+drawingCanvas.prototype.drawingCanvasClickEvent = function(e){
+
+	if(mainApp.uiManager.currentContext != e.currentTarget.id){
+		mainApp.uiManager.manageContext(e.currentTarget.id);
+	}
+};

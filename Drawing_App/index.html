@@ -29,12 +29,8 @@
 		<hgroup>Object Properties</hgroup>
 	</div>
 	
-	<div id="ToolBar" class="UI_ToolBar" data-binding="toolBar">
+	<div id="ToolBar" class="UI_ToolBar" >
 	
-		<hgroup>Tool Bar</hgroup>
-		
-		<div id="ToolBarHandle" class="UI_ToolBarHandle" ></div>
-		
 		<ol id="ToolBarItems" class="UI_ToolBarItems" >
 			<ol id="ToolBarItems_Select" class="ToolBarItems_Section">
 				<li id="ToolBarItem_0" class="UI_ToolBarItem"><img alt="Select Object" src="WebContent/images/ToolBarItems_Icons.png"></li>
@@ -55,10 +51,10 @@
 		</ol>		
 	</div>
 	
-	<div id="TestControl" style="width: 500px; height: auto; margin: auto; text-align: center;"></div>
+	<canvas id="DrawingCanvas" class="UI_DrawingCanvas" ></canvas>
 	
-	<canvas id="DrawingCanvas" class="UI_DrawingCanvas" data-binding="drawingCanvas"></canvas>
+	<!--<div id="TestControl" style="width: 500px; height: auto; margin: auto; text-align: center;"></div>
+	<div id="TestOutput" class="UI_TestOutput"></div>-->
 	
-	<div id="TestOutput" class="UI_TestOutput"></div>
 </body>
 </html>
