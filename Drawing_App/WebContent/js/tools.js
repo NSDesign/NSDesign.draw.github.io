@@ -1,138 +1,243 @@
-
 var tools = {
-		
-		selectObject : {
-			
-			id : 0,
-			longName : "Select Object",
-			shortName : "Sel Obj",
-			shortCut : "Q",
-			state : "selected",
-			
-			//Add Tool Default Properties Object
-			objectPropertiesDefault : {
-				autoSelect : false,
-				displayHandles : false,
-			},
-			
-			iconNormal : "WebContent/images/Select_Object_Normal.png",
-			iconOver : "WebContent/images/Select_Object_Over.png",
-			iconDown : "WebContent/images/Select_Object_Down.png",
-			iconDisabled : "WebContent/images/Select_Object_Disabled.png",
+
+	selectObject : {
+
+		id : 0,
+		longName : "Select Object",
+		shortName : "Sel Obj",
+		shortCut : "Q",
+		state : "selected",
+
+		// Add Tool Default Properties Object
+		objectPropertiesDefault : {
+			autoSelect : false,
+			displayHandles : false,
 		},
 
-		selectElement : {
-			
-			id : 1,
-			longName : "Select Element",
-			shortName : "Sel Ele",
-			shortCut : "W",
-			state : "unselected",
-			
-			iconNormal : "WebContent/images/Select_Element_Normal.png",
-			iconOver : "WebContent/images/Select_Element_Over.png",
-			iconDown : "WebContent/images/Select_Element_Down.png",
-			iconDisabled : "WebContent/images/Select_Element_Disabled.png",
+		iconNormal : {
+			x : 0,
+			y : 0
 		},
-		
-		createRectangle : {
-			
-			id : 2,
-			longName : "Create Rectangle",
-			shortName : "Cre Rec",
-			shortCut : "R",
-			state : "unselected",
-			
-			iconNormal : "WebContent/images/Create_Rectangle_Normal.png",
-			iconOver : "WebContent/images/Create_Rectangle_Over.png",
-			iconDown : "WebContent/images/Create_Rectangle_Down.png",
-			iconDisabled : "WebContent/images/Create_Rectangle_Disabled.png",
+		iconOver : {
+			x : -50,
+			y : 0
 		},
-		
-		createEllipse : {
-			
-			id : 3,
-			longName : "Create Ellipse",
-			shortName : "Cre Eli",
-			shortCut : "E",
-			state : "unselected",
-			
-			iconNormal : "WebContent/images/Create_Ellipse_Normal.png",
-			iconOver : "WebContent/images/Create_Ellipse_Over.png",
-			iconDown : "WebContent/images/Create_Ellipse_Down.png",
-			iconDisabled : "WebContent/images/Create_Ellipse_Disabled.png",
+		iconDown : {
+			x : -100,
+			y : 0
 		},
-		
-		createLine : {
-			
-			id : 4,
-			longName : "Create Line",
-			shortName : "Cre Lin",
-			shortCut : "L",
-			state : "unselected",
-			
-			iconNormal : "WebContent/images/Create_Line_Normal.png",
-			iconOver : "WebContent/images/Create_Line_Over.png",
-			iconDown : "WebContent/images/Create_Line_Down.png",
-			iconDisabled : "WebContent/images/Create_Line_Disabled.png",
+		iconDisabled : {
+			x : -150,
+			y : 0
 		},
-		
-		createCurve : {
-			
-			id : 5,
-			longName : "Create Curve",
-			shortName : "Cre Crv",
-			shortCut : "T",
-			state : "unselected",
-			
-			iconNormal : "WebContent/images/Create_Curve_Normal.png",
-			iconOver : "WebContent/images/Create_Curve_Over.png",
-			iconDown : "WebContent/images/Create_Curve_Down.png",
-			iconDisabled : "WebContent/images/Create_Curve_Disabled.png",
+	},
+
+	selectElement : {
+
+		id : 1,
+		longName : "Select Element",
+		shortName : "Sel Ele",
+		shortCut : "W",
+		state : "unselected",
+
+		iconNormal : {
+			x : 0,
+			y : -50
 		},
-		
-		createLText : {
-			
-			id : 6,
-			longName : "Create Text",
-			shortName : "Cre Txt",
-			shortCut : "Y",
-			state : "unselected",
-			
-			iconNormal : "WebContent/images/Create_Text_Normal.png",
-			iconOver : "WebContent/images/Create_Text_Over.png",
-			iconDown : "WebContent/images/Create_Text_Down.png",
-			iconDisabled : "WebContent/images/Create_Text_Disabled.png",
+		iconOver : {
+			x : -50,
+			y : -50
 		},
-		
-		canvasZoom : {
-			
-			id : 7,
-			longName : "Canvas Zoom",
-			shortName : "Cvs Zom",
-			shortCut : "Z",
-			state : "unselected",
-			
-			iconNormal : "WebContent/images/Canvas_Zoom_Normal.png",
-			iconOver : "WebContent/images/Canvas_Zoom_Over.png",
-			iconDown : "WebContent/images/Canvas_Zoom_Down.png",
-			iconDisabled : "WebContent/images/Canvas_Zoom_Disabled.png",
+		iconDown : {
+			x : -100,
+			y : -50
 		},
-		
-		canvasPan : {
-			
-			id : 8,
-			longName : "Canvas Pan",
-			shortName : "Cvs Pan",
-			shortCut : "P",
-			state : "unselected",
-			
-			iconNormal : "WebContent/images/Canvas_Pan_Normal.png",
-			iconOver : "WebContent/images/Canvas_Pan_Over.png",
-			iconDown : "WebContent/images/Canvas_Pan_Down.png",
-			iconDisabled : "WebContent/images/Canvas_Pan_Disabled.png",
+		iconDisabled : {
+			x : -150,
+			y : -50
 		},
-		
+	},
+
+	createRectangle : {
+
+		id : 2,
+		longName : "Create Rectangle",
+		shortName : "Cre Rec",
+		shortCut : "R",
+		state : "unselected",
+
+		iconNormal : {
+			x : 0,
+			y : -100
+		},
+		iconOver : {
+			x : -50,
+			y : -100
+		},
+		iconDown : {
+			x : -100,
+			y : -100
+		},
+		iconDisabled : {
+			x : -150,
+			y : -100
+		},
+	},
+
+	createEllipse : {
+
+		id : 3,
+		longName : "Create Ellipse",
+		shortName : "Cre Eli",
+		shortCut : "E",
+		state : "unselected",
+
+		iconNormal : {
+			x : 0,
+			y : -150
+		},
+		iconOver : {
+			x : -50,
+			y : -150
+		},
+		iconDown : {
+			x : -100,
+			y : -150
+		},
+		iconDisabled : {
+			x : -150,
+			y : -150
+		},
+	},
+
+	createLine : {
+
+		id : 4,
+		longName : "Create Line",
+		shortName : "Cre Lin",
+		shortCut : "L",
+		state : "unselected",
+
+		iconNormal : {
+			x : 0,
+			y : -200
+		},
+		iconOver : {
+			x : -50,
+			y : -200
+		},
+		iconDown : {
+			x : -100,
+			y : -200
+		},
+		iconDisabled : {
+			x : -150,
+			y : -200
+		},
+	},
+
+	createCurve : {
+
+		id : 5,
+		longName : "Create Curve",
+		shortName : "Cre Crv",
+		shortCut : "T",
+		state : "unselected",
+
+		iconNormal : {
+			x : 0,
+			y : -250
+		},
+		iconOver : {
+			x : -50,
+			y : -250
+		},
+		iconDown : {
+			x : -100,
+			y : -250
+		},
+		iconDisabled : {
+			x : -150,
+			y : -250
+		},
+	},
+
+	createLText : {
+
+		id : 6,
+		longName : "Create Text",
+		shortName : "Cre Txt",
+		shortCut : "Y",
+		state : "unselected",
+
+		iconNormal : {
+			x : 0,
+			y : -300
+		},
+		iconOver : {
+			x : -50,
+			y : -300
+		},
+		iconDown : {
+			x : -100,
+			y : -300
+		},
+		iconDisabled : {
+			x : -150,
+			y : -300
+		},
+	},
+
+	canvasZoom : {
+
+		id : 7,
+		longName : "Canvas Zoom",
+		shortName : "Cvs Zom",
+		shortCut : "Z",
+		state : "unselected",
+
+		iconNormal : {
+			x : 0,
+			y : -350
+		},
+		iconOver : {
+			x : -50,
+			y : -350
+		},
+		iconDown : {
+			x : -100,
+			y : -350
+		},
+		iconDisabled : {
+			x : -150,
+			y : -350
+		},
+	},
+
+	canvasPan : {
+
+		id : 8,
+		longName : "Canvas Pan",
+		shortName : "Cvs Pan",
+		shortCut : "P",
+		state : "unselected",
+
+		iconNormal : {
+			x : 0,
+			y : -400
+		},
+		iconOver : {
+			x : -50,
+			y : -400
+		},
+		iconDown : {
+			x : -100,
+			y : -400
+		},
+		iconDisabled : {
+			x : -150,
+			y : -400
+		},
+	},
+
 };
-
-

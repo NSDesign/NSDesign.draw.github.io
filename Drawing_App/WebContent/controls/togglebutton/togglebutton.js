@@ -23,28 +23,37 @@ function ToggleButton() {
 
 ToggleButton.prototype = Object.create(ToggleBase.prototype);
 
-ToggleButton.prototype.setStyle = function() {
+ToggleButton.prototype.setToggleButtonStyle = function(o, s) {
 
+	o.outlineOffset = "1px";
+	o.padding = "6px";
+	o.textAlign = "center";
+	o.outline = "solid black 2px";
+	o = s;
 };
 
 ToggleButton.prototype.toggleButtonClickEvent = function(e) {
 
 	var newVal = ToggleBase.prototype.toggleBaseLogic.call(obj, e);
-
-	this.style.outlineOffset = "1px";
-	this.style.padding = "6px";
-	this.style.textAlign = "center";
+	
+	var style = {
+		backgroundColor : "black";
+		color : "white";	
+	};
+	
+	// this.style.outlineOffset = "1px";
+	// this.style.padding = "6px";
+	// this.style.textAlign = "center";
 
 	if (newVal) {
-
-		this.style.backgroundColor = "black";
-		this.style.color = "white";
-		this.style.outline = "solid black 2px";
+		
+		this.setToggleButtonStyle(this.style, s)
+		
 	} else {
 
 		this.style.backgroundColor = "white";
 		this.style.color = "black";
-		this.style.outline = "solid black 2px";
+
 	}
 
 	e.currentTarget.value = newVal;
