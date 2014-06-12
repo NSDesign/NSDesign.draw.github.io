@@ -25,39 +25,61 @@ ToggleButton.prototype = Object.create(ToggleBase.prototype);
 
 ToggleButton.prototype.setToggleButtonStyle = function(o, s) {
 
-	o.outlineOffset = "1px";
-	o.padding = "6px";
-	o.textAlign = "center";
-	o.outline = "solid black 2px";
-	o = s;
+	var i = 0;
+	for (props in s) {
+
+		var k = Object.keys(s)[i];
+		var n = [ o.style + "." + k ];
+
+		// console.log("A ", k);
+		// console.log("B ", n);
+		// console.log("C ", typeof s[props]);
+
+		n = s[props];
+
+		i += 1;
+	}
+
+};
+
+ToggleButton.prototype.setToggleButtonValue = function(e, v) {
+
+	e.value = v;
 };
 
 ToggleButton.prototype.toggleButtonClickEvent = function(e) {
 
 	var newVal = ToggleBase.prototype.toggleBaseLogic.call(obj, e);
-	
-	var style = {
-		backgroundColor : "black";
-		color : "white";	
-	};
-	
-	// this.style.outlineOffset = "1px";
-	// this.style.padding = "6px";
-	// this.style.textAlign = "center";
 
 	if (newVal) {
-		
-		this.setToggleButtonStyle(this.style, s)
-		
+
+		var styles = {
+			backgroundColor : "black",
+			color : "white",
+			outlineOffset : "1px",
+			padding : "6px",
+			textAlign : "center",
+			outline : "solid black 2px",
+		};
+
+		obj.setToggleButtonStyle(this, styles);
+
 	} else {
 
-		this.style.backgroundColor = "white";
-		this.style.color = "black";
+		var styles = {
+			backgroundColor : "white",
+			color : "black",
+			outlineOffset : "1px",
+			padding : "6px",
+			textAlign : "center",
+			outline : "solid black 2px",
+		};
 
+		obj.setToggleButtonStyle(this, styles);
 	}
 
-	e.currentTarget.value = newVal;
-
+	obj.setToggleButtonValue(e.currentTarget, newVal);
+	// console.log(newVal);
 };
 
 ToggleButton.prototype.toggleButtonOverEvent = function(e) {

@@ -1,35 +1,84 @@
 
 body{
-	background: #FFFFFF;
-	margin: 0px;
-	padding: 0px;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 8pt;
-	overflow: hidden;
+
+	background-color : #FFFFFF;
+	margin : 0px;
+	padding : 0px;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 8pt;
+	overflow : hidden;
 	
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+	-webkit-touch-callout : none;
+	-webkit-user-select : none;
+	-khtml-user-select : none;
+	-moz-user-select : none;
+	-ms-user-select : none;
+	user-select : none;
+
 }
 
 div{
-	background: white;
-	padding: 5px 5px 0px 5px;
-	
+
+	background-color : rgba(255, 255, 255, 0.75);
+	padding : 3px 6px 3px 6px;
+
 }
 
 hgroup{
-	/*height: 20px;*/
-	margin: 0px;
-	padding: 5px 5px 15px 5px;
 
-	border-bottom: 1px solid black;
+	margin : 0px;
+	padding : 6px 6px 12px 6px;
+	text-decoration : none;
 
-	text-decoration: none;
 }
+
+<!--
+UI LISTS
+MAIN MENU
+-->
+
+div{
+
+}
+
+.UI_MainMenu{
+
+	
+
+}
+
+
+<!--
+UI LISTS
+OBJECT PROPERTIES
+-->
+
+div{
+
+}
+
+.UI_ObjectProperties{
+
+	display: inline-block;
+	width : 100%;
+	height : 47px;
+	
+}
+
+.UI_ObjectProperties hgroup{
+
+	float : left;
+	
+}
+
+.UI_ObjectProperties div{
+
+	float : left;
+
+}
+
+
+
 
 <!--
 UI LISTS
@@ -37,220 +86,144 @@ TOOLBAR
 -->
 
 li{
-	display: list-item;
-	list-style-type: none;
-	text-align: left;
+
+	display : list-item;
+	list-style-type : none;
+	text-align : left;
+
 }
 
 ol{
-	list-style-type: none;
+
+	list-style-type : none;
+
 }
 
 ol ol{
-	list-style-type: none;
-	padding-left: 0px;
+
+	list-style-type : none;
+	padding-left : 0px;
+
 }
 
 <!--
 UI TOOLBAR
 -->
 
-div{}
+div{
 
-.UI_ToolBar{	
-	position: absolute;
-	top: 120px;
-	left: 10px;
-	width: 50px;
-	border: 1px solid black;
-	padding: 0px;
-	margin: 0px;
-	z-index: 1;
 }
 
-.UI_ToolBarHandle{	
-	background: black;
-	height: 20px;
-	padding: inherit;
-	margin: inherit;
+.UI_ToolBar{
+	
+	position : absolute;
+	top : 92px;
+	left : 0px;
+	width : 50px;
+	border : 1px solid black;
+	padding : 0px;
+	margin : 0px;
+	z-index: 10;
+
+
+}
+
+.UI_ToolBarHandle{
+	
+	background-color : black;
+	height : 20px;
+	padding : inherit;
+	margin : inherit;
+
 }
 
 .UI_ToolBarItems{
-	list-style-type: none;
-	padding: inherit;
-	margin: inherit;
+
+	list-style-type : none;
+	padding : inherit;
+	margin : inherit;
+
 }
 
 .ToolBarItems_Section{
 
-	border-bottom: solid black 1px;
-	border-collapse: separate;
+	border-bottom : solid black 1px;
+
+}
+
+ol:last-child{
+
+	border-bottom : none black 0px;
 
 }
 
 #ToolBarItems_Select{
 
+
+
 }
 
 #ToolBarItems_Create{
+
+
 
 }
 
 #ToolBarItems_Canvas{
 
+
+
 }
 
 .UI_ToolBarItem{
-	padding: inherit;
-	margin: inherit;
-	width: 50px;
-	height: 50px;
-	overflow: hidden;
-}
 
-#ToolBarItem_0 img{
-	position: relative;
-	top: 0px;
-	left: 0px;
-	
-}
-#ToolBarItem_0 img:hover {
-	position: relative;
-	top: 0px;
-	left: -50px;
-}
+	padding : inherit;
+	margin : inherit;
+	width : 50px;
+	height : 50px;
+	overflow : hidden;
 
-#ToolBarItem_1 img{
-	position: relative;
-	top: -50px;
-	left: 0px;
-}
-#ToolBarItem_1 img:hover {
-	position: relative;
-	top: -50px;
-	left: -50px;
-}
-
-#ToolBarItem_2 img{
-	position: relative;
-	top: -100px;
-	left: 0px;
-}
-#ToolBarItem_2 img:hover {
-	position: relative;
-	top: -100px;
-	left: -50px;
-}
-
-#ToolBarItem_3 img{
-	position: relative;
-	top: -150px;
-	left: 0px;
-}
-#ToolBarItem_3 img:hover {
-	position: relative;
-	top: -150px;
-	left: -50px;
-}
-
-#ToolBarItem_4 img{
-	position: relative;
-	top: -200px;
-	left: 0px;
-}
-#ToolBarItem_4 img:hover {
-	position: relative;
-	top: -200px;
-	left: -50px;
-}
-
-#ToolBarItem_5 img{
-	position: relative;
-	top: -250px;
-	left: 0px;
-}
-#ToolBarItem_5 img:hover {
-	position: relative;
-	top: -250px;
-	left: -50px;
-}
-
-#ToolBarItem_6 img{
-	position: relative;
-	top: -300px;
-	left: 0px;
-}
-#ToolBarItem_6 img:hover {
-	position: relative;
-	top: -300px;
-	left: -50px;
-}
-
-#ToolBarItem_7 img{
-	position: relative;
-	top: -350px;
-	left: 0px;
-}
-#ToolBarItem_7 img:hover {
-	position: relative;
-	top: -350px;
-	left: -50px;
-}
-
-#ToolBarItem_8 img{
-	position: relative;
-	top: -400px;
-	left: 0px;
-}
-#ToolBarItem_8 img:hover {
-	position: relative;
-	top: -400px;
-	left: -50px;
-}
-
-
-<!--
-UI LISTS
-MAIN MENU
--->
-
-div{}
-
-.UI_MainMenu{
-	width: 100%;
-	
-}
-
-.UI_ObjectProperties{
-	width: 100%;
-	
-}
-
-
-<!--
-UI DRAWING CANVAS
--->
-
-canvas{}
-
-.UI_DrawingCanvas{
-	margin: 0%;
-	background-image: url("../images/Grid_10x10_px.png");
-	background-position: top left;
-	background-repeat: repeat;
-	background-attachment: fixed;
-	border: 1px solid black;
-	
 }
 
 <!--
-UI TEST OUTPUT
+UI CANVAS
 -->
 
-div{}
+canvas{
+
+}
+
+.UI_Canvas{
+
+	position : absolute;
+	margin : 0%;
+	border : 1px solid black;
+	z-index: 0;
+
+}
+
+<!--
+UI TEST OUTPUT /////////////////////////////////////////////////////
+-->
+
+div{
+
+}
+
+#TestControl{
+
+	width: 500px;
+	border : 2px solid black;
+	margin : auto;
+	text-align: center;
+	z-index : 1000;
+
+}
 
 .UI_TestOutput{
-	border: 2px solid black;
-	margin: 5px;
-	z-index: 1000;
+
+	border : 2px solid black;
+	margin : 5px;
+	z-index : 1000;
+
 }

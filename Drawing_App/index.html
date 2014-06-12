@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script type="text/javascript" src="WebContent/js/main.js"></script>
 	
+	<link rel="stylesheet" type="text/css" href="WebContent/css/style.css">
+
 	<script type="text/javascript" src="WebContent/js/helpers/array.js"></script>
 	<script type="text/javascript" src="WebContent/js/helpers/managerbase.js"></script>
+	<script type="text/javascript" src="WebContent/js/helpers/moduleobjects.js"></script>
+	<script type="text/javascript" src="WebContent/js/helpers/utilities.js"></script>
+	<script type="text/javascript" src="WebContent/js/helpers/objectextension.js"></script>
+	
+	<script type="text/javascript" src="WebContent/js/main.js"></script>
+	<script type="text/javascript" src="WebContent/js/drawingapplication.js"></script>
 	
 	<script type="text/javascript" src="WebContent/js/mousemanager.js"></script>
 	<script type="text/javascript" src="WebContent/js/uimanager.js"></script>
+	<script type="text/javascript" src="WebContent/js/mainmenu.js"></script>
 	<script type="text/javascript" src="WebContent/js/objectproperties.js"></script>
 	<script type="text/javascript" src="WebContent/js/canvas.js"></script>
 	<script type="text/javascript" src="WebContent/js/tools.js"></script>
@@ -16,7 +24,7 @@
 	
 	<script type="text/javascript" src="WebContent/js/testoutput.js"></script>
 	
-	<link rel="stylesheet" type="text/css" href="WebContent/css/style.css">
+	
 	
 	<title>Drawing Application</title>
 </head>
@@ -27,6 +35,7 @@
 	
 	<div id="ObjectProperties" class="UI_ObjectProperties">
 		<hgroup>Object Properties</hgroup>
+		
 	</div>
 	
 	<div id="ToolBar" class="UI_ToolBar" >
@@ -51,10 +60,11 @@
 		</ol>		
 	</div>
 	
-	<canvas id="DrawingCanvas" class="UI_DrawingCanvas" ></canvas>
+
+	<canvas id="Canvas" class="UI_Canvas" ></canvas>
 	
-	<!--<div id="TestControl" style="width: 500px; height: auto; margin: auto; text-align: center;"></div>
-	<div id="TestOutput" class="UI_TestOutput"></div>-->
+	
+	<!--<div id="TestOutput" class="UI_TestOutput"></div>-->
 	
 </body>
 </html>

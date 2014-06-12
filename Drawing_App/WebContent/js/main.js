@@ -1,52 +1,43 @@
+window.onload = function () {
 
-
-window.onload = windowLoaded;
-
-
-function windowLoaded(){
-	
-	//console.log(typeof(this.mainApp));
-	
-	this.mainApp = new mainApp();
-
-	//console.log(typeof(this.mainApp));
-}
-
-function mainApp(){
-	
-	if(this instanceof mainApp && this.init == false){
-		//mainApp is being instantiated : Singleton
-		this.init = true;
-		
-		//console.log("mainApp Instantiated : " + this.init);
-		
-		
-		this.DrawingCanvas = new drawingCanvas();
-		//this.drawingCanvas.initCanvas();
-		
-		this.uiManager = new uiManager();
-	
-		//this.mouseManager = new mouseManager();
-		
-		//initTestOutput();
-	
-		// TEST HTML CONTROLS
-		//var tC = document.getElementById("TestControl");
-		//tC.innerHTML += "<object type='text/html' data='WebContent/controls/togglebutton/togglebutton.html'></object>";
-	}
-	
+	MainApp = new MainApp();
 };
 
-mainApp.prototype.init = false;
-
-/*
-
-window.onclick = test;
-
-function test(){
+function MainApp() {
 	
-	console.log(this.mainApp);
+	var instance = this;
 	
-}
+	this.UIManager = new UIManager();
+	this.UIManager.manageUIElements( 
+		{ 
+			mainMenu : new MainMenu( 0, document.getElementById( "MainMenu" ), "MainMenu", "Main Menu", this.UIManager ),
+			objectProperties : new ObjectProperties( 1, document.getElementById( "ObjectProperties" ), "ObjectProperties", "Object Properties", this.UIManager ),
+			toolBar : new ToolBar( 2, document.getElementById( "ToolBar" ), "ToolBar", "Tool Bar", this.UIManager ),
+			canvas : new Canvas( 3, document.getElementById( "Canvas" ), "Canvas", "Drawing Canvas", this.UIManager ),		
+		}
+	);
+	
+	this.Canvas = new Canvas( 0, document.getElementById( "Canvas" ), "Canvas", "Drawing Canvas", this.UIManager );	
+	this.Canvas.initialise( this.Canvas.objectPropertiesDefault );
+	
+	
+	/*
+	 * SINGLETON CONSTRUCTOR 
+	 */
+		
+	MainApp = function () {
+		
+		console.log(this);
+		
+		return instance;
+	};
+	
+	
+	/*	
+	// TEST HTML CONTROLS
+	var tC = document.createElement( "div" );
+	tC.id = "TestControl";
+	document.body.appendChild( tC );
+	*/
+};
 
-*/

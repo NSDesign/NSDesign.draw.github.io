@@ -1,41 +1,26 @@
 
-var objectProperties = function(){
-	
-	this.name = "ObjectProperties";
-};
+function ObjectProperties( id, element, elementName, displayName, uiManager ) {
 
-objectProperties.prototype.createObjectProperties = function(o){
-	
-	var oN = o.objectPropertiesDefault;
-	var oP = document.getElementById(this.name).firstChild.nextSibling;
-	
-	oP.innerHTML = "";
-	oP.innerHTML += "Object Properties : ";
-	
-	for(var i = 0; i < oN.length; i += 1){
-		
-		oP.innerHTML += oN[i][0]; 
+	Module.call( this, id, element, elementName, displayName, uiManager );
 
-		switch(oN[i][1]){
+	this.createObjectProperties = function( o ) {
+
+		var oPropDefault = o.objectPropertiesDefault;
 		
-			case "input":
-				
-				oP.innerHTML += "<" + oN[i][1] + " " + "type=" + oN[i][2] + " " + "value=" + oN[i][3] + "></" + oN[i][1] + ">";
-				oP.innerHTML += " ";
-				break;
-				
-			case "toggle":
-				
-				oP.innerHTML += "<object type='text/html' data='WebContent/controls/togglebutton/togglebutton.html' width='52' height='41'></object>";
-				oP.innerHTML += " ";
-				
-				//oP.innerHTML += "<" + oN[i][1] + " " + "type=" + oN[i][1] + " " + "value=" + oN[i][3] + ">" + oN[i][3] + "</" + oN[i][1] + ">";
-				//oP.innerHTML += " ";
-				break;
-				
+		
+		for ( objectProperties in oPropDefault ) {
+			
+			var oPropContainer = document.createElement( "div" );
+			
+			this.element.appendChild( oPropContainer );
+			
+			oPropContainer.appendChild( document.createTextNode( " " + oPropDefault[ objectProperties ].name + " " ) );
+			oPropContainer.appendChild( document.createElement( "br" ) );			
+			oPropContainer.appendChild( createControl( oPropDefault[ objectProperties ] ) );
 		}
-	}	
-	
-	//oP.innerHTML += "</hgroup>";
-	
+	};
 };
+
+ObjectProperties.prototype = Object.create( Module.prototype );
+
+

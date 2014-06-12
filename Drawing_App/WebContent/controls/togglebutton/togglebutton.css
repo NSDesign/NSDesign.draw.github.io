@@ -7,8 +7,8 @@ body{
 }
 
 #ToggleButton{
-	background-color: black;
-	color: white;
+	background-color: white;
+	color: black;
 	padding: 6px;
 	
 	outline: solid black 2px;
@@ -17,17 +17,3 @@ body{
 	border-image*: none;
 }
 
-#ToggleButton:hover {
-	outline: solid black 4px;
-}
-
-#ToggleButton:active {
-	outline: none;
-}
-
-#ToggleButton:focus {
-	background-color: white;
-	color: black;
-	
-	outline: solid black 2px;
-}

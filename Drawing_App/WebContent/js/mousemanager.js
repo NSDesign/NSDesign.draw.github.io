@@ -27,7 +27,7 @@ function mouseManager(){
 mouseManager.prototype.initMouseManager = function(){
 	/*
 	 * ADDS CLICK EVENT HANDLERS TO ALL ELEMENTS DEFINED IN UIELEMENTS OBJECT
-	var e = document.getElementById("DrawingCanvas");
+	var e = document.getElementById("Canvas");
 	e.addEventListener("click", registerEvent, false);
 	
 	
@@ -49,8 +49,8 @@ mouseManager.prototype.initMouseManager = function(){
 /*
 function registerEvent(e){
 	
-	if(mainApp.uiManager.currentContext != e.target){
-		mainApp.uiManager.manageContext(e.target);
+	if(MainApp.uiManager.currentContext != e.target){
+		MainApp.uiManager.manageContext(e.target);
 	}
 	
 }

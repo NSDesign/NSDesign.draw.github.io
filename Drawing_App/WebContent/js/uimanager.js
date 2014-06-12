@@ -1,31 +1,23 @@
 
-// ID's OF MAIN UI ELEMENTS
-// MIGHT CHANGE TO AN OBJECT CONTAINING SUB OBJECTS e.g. 
-//ToolBar.ToolBarHandle 
-//RATHER THAN SEPERATE OBJECTS AT THE SAME LEVEL 
-//ToolBar 
-//ToolBarHandle
+function UIManager() {
 
-function uiManager(){
-	
 	this.currentContext = null;
-	this.uiElements = {
+	this.uiElements = {};
 	
-		MainMenu :  ["Main Menu", "File", "Edit", "Window"],
-		ObjectPropertiesMenu : ["Object Properties Menu"],
-		ToolBar : ["Tool Bar", "Tool Bar Handle", "Tool Bar Items"],
-		DrawingCanvas : ["Drawing Canvas"],
-		//AnimatePanel : ["Animate Panel"],
+	this.manageUIElements = function( elements ) {
 		
+		this.uiElements = elements;
+		
+		for( element in elements ){
+			console.log(element, " : ", elements[element]);
+		}
 	};
 	
-	
-	
+	this.manageContext = function( context ) {
+
+		this.currentContext = context;
+		this.uiElements.objectProperties.createObjectProperties( this.uiElements[this.currentContext.toLowerCase()] ); //eval( "MainApp" + "." + this.currentContext )
+	};
 }
 
-uiManager.prototype.manageContext = function(context){
-	
-	this.currentContext = context;
-	new objectProperties().createObjectProperties(eval("mainApp" + "." + this.currentContext));
 
-};

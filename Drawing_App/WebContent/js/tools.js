@@ -8,7 +8,10 @@ var tools = {
 		shortCut : "Q",
 		state : "selected",
 
-		// Add Tool Default Properties Object
+//TODO
+		//Add Tool Default Properties Object
+		//To all Tools
+
 		objectPropertiesDefault : {
 			autoSelect : false,
 			displayHandles : false,
@@ -40,6 +43,10 @@ var tools = {
 		shortCut : "W",
 		state : "unselected",
 
+		objectPropertiesDefault : {
+
+		},
+
 		iconNormal : {
 			x : 0,
 			y : -50
@@ -65,6 +72,10 @@ var tools = {
 		shortName : "Cre Rec",
 		shortCut : "R",
 		state : "unselected",
+
+		objectPropertiesDefault : {
+
+		},
 
 		iconNormal : {
 			x : 0,
@@ -92,6 +103,10 @@ var tools = {
 		shortCut : "E",
 		state : "unselected",
 
+		objectPropertiesDefault : {
+
+		},
+
 		iconNormal : {
 			x : 0,
 			y : -150
@@ -117,6 +132,10 @@ var tools = {
 		shortName : "Cre Lin",
 		shortCut : "L",
 		state : "unselected",
+
+		objectPropertiesDefault : {
+
+		},
 
 		iconNormal : {
 			x : 0,
@@ -144,6 +163,10 @@ var tools = {
 		shortCut : "T",
 		state : "unselected",
 
+		objectPropertiesDefault : {
+
+		},
+
 		iconNormal : {
 			x : 0,
 			y : -250
@@ -169,6 +192,10 @@ var tools = {
 		shortName : "Cre Txt",
 		shortCut : "Y",
 		state : "unselected",
+
+		objectPropertiesDefault : {
+
+		},
 
 		iconNormal : {
 			x : 0,
@@ -196,6 +223,10 @@ var tools = {
 		shortCut : "Z",
 		state : "unselected",
 
+		objectPropertiesDefault : {
+
+		},
+
 		iconNormal : {
 			x : 0,
 			y : -350
@@ -221,6 +252,10 @@ var tools = {
 		shortName : "Cvs Pan",
 		shortCut : "P",
 		state : "unselected",
+
+		objectPropertiesDefault : {
+
+		},
 
 		iconNormal : {
 			x : 0,
