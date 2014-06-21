@@ -1,3 +1,13 @@
+/**
+ * @author Nick Sullivan
+ */
+
+
+*{
+	
+	outline : none;
+	text-decoration : none;
+}
 
 body{
 
@@ -6,30 +16,26 @@ body{
 	padding : 0px;
 	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size : 8pt;
-	overflow : hidden;
 	
-	-webkit-touch-callout : none;
+	overflow : hidden; /*Stops scrolling*/
+	
 	-webkit-user-select : none;
 	-khtml-user-select : none;
 	-moz-user-select : none;
 	-ms-user-select : none;
 	user-select : none;
-
 }
 
 div{
 
 	background-color : rgba(255, 255, 255, 0.75);
 	padding : 3px 6px 3px 6px;
-
 }
 
 hgroup{
 
 	margin : 0px;
 	padding : 6px 6px 12px 6px;
-	text-decoration : none;
-
 }
 
 <!--
@@ -37,15 +43,9 @@ UI LISTS
 MAIN MENU
 -->
 
-div{
+div{}
 
-}
-
-.UI_MainMenu{
-
-	
-
-}
+.UI_MainMenu{}
 
 
 <!--
@@ -53,31 +53,26 @@ UI LISTS
 OBJECT PROPERTIES
 -->
 
-div{
-
-}
+div{}
 
 .UI_ObjectProperties{
 
 	display: inline-block;
 	width : 100%;
 	height : 47px;
-	
 }
 
 .UI_ObjectProperties hgroup{
 
 	float : left;
-	
 }
 
 .UI_ObjectProperties div{
-
+	
+	margin : 0px;
+	padding : 1.75px;
 	float : left;
-
 }
-
-
 
 
 <!--
@@ -90,29 +85,25 @@ li{
 	display : list-item;
 	list-style-type : none;
 	text-align : left;
-
 }
 
 ol{
 
 	list-style-type : none;
-
 }
 
 ol ol{
 
 	list-style-type : none;
 	padding-left : 0px;
-
 }
+
 
 <!--
 UI TOOLBAR
 -->
 
-div{
-
-}
+div{}
 
 .UI_ToolBar{
 	
@@ -124,17 +115,6 @@ div{
 	padding : 0px;
 	margin : 0px;
 	z-index: 10;
-
-
-}
-
-.UI_ToolBarHandle{
-	
-	background-color : black;
-	height : 20px;
-	padding : inherit;
-	margin : inherit;
-
 }
 
 .UI_ToolBarItems{
@@ -142,73 +122,91 @@ div{
 	list-style-type : none;
 	padding : inherit;
 	margin : inherit;
-
 }
 
+hr{
+
+	border-top : 0px;
+	border-right : 0px;
+	border-bottom : solid black 1px;
+	border-left : 0px;
+}
+
+/*
 .ToolBarItems_Section{
 
 	border-bottom : solid black 1px;
-
 }
 
 ol:last-child{
 
 	border-bottom : none black 0px;
-
 }
+*/
 
-#ToolBarItems_Select{
-
-
-
-}
-
-#ToolBarItems_Create{
-
-
-
-}
-
-#ToolBarItems_Canvas{
-
-
-
-}
+#ToolBarItems_Select{}tems_Create{}
+#ToolBarItems_Canvas{}
 
 .UI_ToolBarItem{
 
-	padding : inherit;
-	margin : inherit;
+	padding : 0px;
+	margin : 0px;
 	width : 50px;
 	height : 50px;
 	overflow : hidden;
-
 }
+
+input[ type="radio" ]{
+	position : relative;
+	top : -50px;
+	width : inherit;
+	height : inherit;
+	margin : auto;
+	padding : inherit;
+	color : white;	
+	border : 0px;
+	
+	-webkit-appearance : none;
+}
+
+.UI_ToolBarItem div{
+
+	position : inherit;
+	width : inherit;
+	height : inherit;
+	padding : inherit;
+	overflow : inherit;
+}
+
+
+.UI_ToolBarItem img{
+
+	position : relative;
+	top : 0px;
+	left : 0px;
+}
+
 
 <!--
 UI CANVAS
 -->
 
-canvas{
-
-}
+canvas{}
 
 .UI_Canvas{
 
 	position : absolute;
 	margin : 0%;
 	border : 1px solid black;
-	z-index: 0;
-
+	z-index: -1;
 }
+
 
 <!--
 UI TEST OUTPUT /////////////////////////////////////////////////////
 -->
 
-div{
-
-}
+div{}
 
 #TestControl{
 
@@ -217,7 +215,6 @@ div{
 	margin : auto;
 	text-align: center;
 	z-index : 1000;
-
 }
 
 .UI_TestOutput{
@@ -225,5 +222,5 @@ div{
 	border : 2px solid black;
 	margin : 5px;
 	z-index : 1000;
-
 }
+

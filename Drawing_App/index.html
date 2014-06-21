@@ -35,26 +35,28 @@
 	
 	<div id="ObjectProperties" class="UI_ObjectProperties">
 		<hgroup>Object Properties</hgroup>
-		
+		<div id="ObjectPropertiesContainer" ></div>
 	</div>
 	
 	<div id="ToolBar" class="UI_ToolBar" >
 	
 		<ol id="ToolBarItems" class="UI_ToolBarItems" >
 			<ol id="ToolBarItems_Select" class="ToolBarItems_Section">
-				<li id="ToolBarItem_0" class="UI_ToolBarItem"><img alt="Select Object" src="WebContent/images/ToolBarItems_Icons.png"></li>
-				<li id="ToolBarItem_1" class="UI_ToolBarItem"><img alt="Select Element" src="WebContent/images/ToolBarItems_Icons.png"></li>
+				<li id="ToolBarItem_0" class="UI_ToolBarItem"><div><img alt="Select Object" src="WebContent/images/ToolBarItems_Icons.png"></div><input type="radio" name="ToolBarItem" id="selectObject"></li>
+				<li id="ToolBarItem_1" class="UI_ToolBarItem"><div><img alt="Select Element" src="WebContent/images/ToolBarItems_Icons.png"></div><input type="radio" name="ToolBarItem" id="selectElement"></li>
 			</ol>
+			<!--<hr>-->
 			<ol id="ToolBarItems_Create" class="ToolBarItems_Section">
-				<li id="ToolBarItem_2" class="UI_ToolBarItem"><img alt="Create Rectangle" src="WebContent/images/ToolBarItems_Icons.png"></li>
-				<li id="ToolBarItem_3" class="UI_ToolBarItem"><img alt="Create Ellipse" src="WebContent/images/ToolBarItems_Icons.png"></li>
-				<li id="ToolBarItem_4" class="UI_ToolBarItem"><img alt="Create Line" src="WebContent/images/ToolBarItems_Icons.png"></li>	
-				<li id="ToolBarItem_5" class="UI_ToolBarItem"><img alt="Create Curve" src="WebContent/images/ToolBarItems_Icons.png"></li>	
-				<li id="ToolBarItem_6" class="UI_ToolBarItem"><img alt="Create Text" src="WebContent/images/ToolBarItems_Icons.png"></li>			
+				<li id="ToolBarItem_2" class="UI_ToolBarItem"><div><img alt="Create Rectangle" src="WebContent/images/ToolBarItems_Icons.png"></div><input type="radio" name="ToolBarItem" id="createRectangle"></li>
+				<li id="ToolBarItem_3" class="UI_ToolBarItem"><div><img alt="Create Ellipse" src="WebContent/images/ToolBarItems_Icons.png"></div><input type="radio" name="ToolBarItem" id="createEllipse"></li>
+				<li id="ToolBarItem_4" class="UI_ToolBarItem"><div><img alt="Create Line" src="WebContent/images/ToolBarItems_Icons.png"></div><input type="radio" name="ToolBarItem" id="createLine"></li>	
+				<li id="ToolBarItem_5" class="UI_ToolBarItem"><div><img alt="Create Curve" src="WebContent/images/ToolBarItems_Icons.png"></div><input type="radio" name="ToolBarItem" id="createCurve"></li>	
+				<li id="ToolBarItem_6" class="UI_ToolBarItem"><div><img alt="Create Text" src="WebContent/images/ToolBarItems_Icons.png"></div><input type="radio" name="ToolBarItem" id="createText"></li>			
 			</ol>
+			<!--<hr>-->
 			<ol id="ToolBarItems_Canvas" class="ToolBarItems_Section">
-				<li id="ToolBarItem_7" class="UI_ToolBarItem"><img alt="Canvas Zoom" src="WebContent/images/ToolBarItems_Icons.png"></li>
-				<li id="ToolBarItem_8" class="UI_ToolBarItem"><img alt="Canvas Pan" src="WebContent/images/ToolBarItems_Icons.png"></li>
+				<li id="ToolBarItem_7" class="UI_ToolBarItem"><div><img alt="Canvas Zoom" src="WebContent/images/ToolBarItems_Icons.png"></div><input type="radio" name="ToolBarItem" id="canvasZoom"></li>
+				<li id="ToolBarItem_8" class="UI_ToolBarItem"><div><img alt="Canvas Pan" src="WebContent/images/ToolBarItems_Icons.png"></div><input type="radio" name="ToolBarItem" id="canvasPan"></li>
 			</ol>
 						
 		</ol>		
