@@ -1,11 +1,11 @@
 
 function toolBarManager(){
-	managerBase.call(this);
+	managerBase.call( this );
 	
 	
 }
 
-toolBarManager.prototype = Object.create(managerBase.prototype);
+toolBarManager.prototype = Object.create( managerBase.prototype );
 
 var toolBarManagerObject = new toolBarManager();
 

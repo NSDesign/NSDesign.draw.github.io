@@ -1,3 +1,7 @@
+/**
+ * @author Nick Sullivan
+ */
+
 window.onload = function () {
 
 	MainApp = new MainApp();
@@ -16,10 +20,14 @@ function MainApp() {
 			canvas : new Canvas( 3, document.getElementById( "Canvas" ), "Canvas", "Drawing Canvas", this.UIManager ),		
 		}
 	);
+	this.UIManager.uiElements.canvas.initialise();
+	this.UIManager.uiElements.toolBar.initialise();
 	
-	this.Canvas = new Canvas( 0, document.getElementById( "Canvas" ), "Canvas", "Drawing Canvas", this.UIManager );	
+	/*
+	 * 	 
+	this.Canvas = new Module_Canvas( 0, document.getElementById( "Canvas" ), "Canvas", "Drawing Canvas", this.UIManager );	
 	this.Canvas.initialise( this.Canvas.objectPropertiesDefault );
-	
+	*/
 	
 	/*
 	 * SINGLETON CONSTRUCTOR 

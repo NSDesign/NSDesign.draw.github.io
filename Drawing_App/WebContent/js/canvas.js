@@ -1,16 +1,19 @@
-
+/**
+ * @author Nick Sullivan
+ */
 
 //var Module_Canvas = (function(){
 
-	function Canvas( id, element, elementName, displayName, uiManager ) {
+	 function Canvas( id, element, elementName, displayName, uiManager ) {
 		
-		Module.call( this, id, element, elementName, displayName, uiManager );
+		Module_Base.getModule().call( this, id, element, elementName, displayName, uiManager );
 			
 		this.gridImage;
+		this.gridSize;
 		this.objectPropertiesDefault = {
 				
 				x : {
-					name : "x",
+					label : "x",
 					control : "input",
 					type : "number",
 					value : 52,
@@ -20,7 +23,7 @@
 				},
 				
 				y : {
-					name : "y",
+					label : "y",
 					control : "input",
 					type : "number",
 					value : 92,
@@ -30,7 +33,7 @@
 				},
 				
 				width : {
-					name : "width",
+					label : "width",
 					control : "input",
 					type : "number",
 					value : window.innerWidth - 52 - 2,
@@ -40,7 +43,7 @@
 				},
 				
 				height : {
-					name : "height",
+					label : "height",
 					control : "input",
 					type : "number",
 					value : window.innerHeight - 52 - 2,
@@ -50,7 +53,7 @@
 				},
 				
 				showGrid : {
-					name : "show grid",
+					label : "show grid",
 					control : "input",
 					type : "button",
 					value : true,
@@ -61,7 +64,7 @@
 				},
 				
 				gridSize : {
-					name : "grid size",
+					label : "grid size",
 					control : "input",
 					type : "number",
 					value : 5,
@@ -72,19 +75,30 @@
 					bindElement : this,
 					bindProperty : "setGridSize",
 					isFunction : true
+				},
+			
+				gridSnap : {
+					label : "grid snap",
+					control : "input",
+					type : "button",
+					value : false,
+					extend : toggleButton,
+					bindElement : this,
+					bindProperty : "setSnapToGridPoint",
+					isFunction : true
 				}
 			};
-		this.element.bind = this; //Only required for correct 'this' in event handler
+		this.element.bind = this; //Only required for expected meaning of 'this' in event handler
 		this.element.addEventListener("click", this.clickEvent, false );
 		
 		//console.log( "Canvas :",  this );
 	};
-	
-	Canvas.prototype = Object.create( Module.prototype );
-	//console.log( "Canvas Proto:", Canvas.prototype );
-	
+
+	Canvas.prototype = Object.create( Module_Base.getModule().prototype );
+
 	Canvas.prototype.initialise = function( o ) {
 		
+		var o = o || this.objectPropertiesDefault;
 		var canvas = this.element;
 			
 		canvas.style.left = o.x.value + "px";
@@ -124,9 +138,10 @@
 	};
 				
 	Canvas.prototype.setGridSize = function( gridSize ) {
-
+		
+		this.gridSize = gridSize;
 		var canvas = this.element;
-			
+		
 		if( gridSize <= this.objectPropertiesDefault.gridSize.max ){
 				
 			this.gridImage = 'WebContent/images/Grid_' + gridSize + 'x' + gridSize + '_px.png';
@@ -136,7 +151,12 @@
 			canvas.style.attachment = "fixed";
 		}
 	};
-
+	
+	Canvas.prototype.setSnapToGridPoint = function( gridSize ) {
+		
+		alert( " TODO : Implement Functionality " );
+	};
+	
 	Canvas.prototype.clickEvent = function( e ) {
 
 		this.bind.setAsContext( e );

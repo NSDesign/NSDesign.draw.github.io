@@ -38,5 +38,6 @@ var UTILITIES = {
 		
 		return Number(string.replace( remove, ""));
 	},
+	
 };
 

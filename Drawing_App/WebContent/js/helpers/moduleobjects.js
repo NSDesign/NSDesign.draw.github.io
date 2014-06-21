@@ -1,8 +1,10 @@
+/**
+ * @author Nick Sullivan
+ */
 
+var Module_Base = (function(){
 
-//var Module_Base = (function(){
-
-	function Module( id, element, elementName, displayName, uiManager ){
+	var Module = function( id, element, elementName, displayName, uiManager ){
 						
 		this.id = id;
 		this.element = element || null;
@@ -24,7 +26,14 @@
 		}
 	};
 	
-//})();
+	return {
+		
+		getModule : function(){
+			
+			return Module;
+		},
+	};
+})();
 
 
 

@@ -2,7 +2,6 @@
  * @author Nick Sullivan
  */
 
-
 function createControl( o ){
 
 	var Control = document.createElement( o.control );
@@ -11,6 +10,7 @@ function createControl( o ){
 	o.step ? Control.step = o.step : false;
 	o.min ? Control.min = o.min : false;
 	o.max ? Control.max = o.max : false;
+	o.name ? Control.name = o.name : false;
 	
 	return o.extend ? UTILITIES.EXTENSIONS.OBJECTS.COPY_OBJECT( new o.extend( o, Control ), Control ) : Control;
 };
@@ -88,7 +88,7 @@ function inputNumber( obj, element ){
 	
 	function Update( e, o){
 		
-		if( o.name === "x" || o.name === "y" ){
+		if( o.label === "x" || o.label === "y" ){
 		
 			o.bindElement.style[o.bindProperty] = e.currentTarget.value + "px";			
 		}else{
@@ -104,10 +104,61 @@ function inputNumber( obj, element ){
 	}
 }
 
-
-
 function toggleButton( obj, element ){
 		
+	var val = obj.value;
+		
+	element.addEventListener("valueChanged", valueChanged, false);
+	function valueChanged( e ) {
+		
+		Update( e, obj );
+	}
+	
+	element.addEventListener("click", onClicked, false);
+	function onClicked( e ){
+	
+		Logic( e );
+	}
+	
+	function Logic( e ){
+				
+		val = !val;
+		e.currentTarget.value = val;	
+
+		DispatchCustomEvent( e );
+	}
+	
+	function DispatchCustomEvent( e ) {
+	
+			//e.preventDefault();
+	
+		var event = new CustomEvent( "valueChanged", {
+			detail : {
+				currentValue : e.currentTarget.value
+			},
+			bubbles : true,
+			cancelable : true
+		});
+			
+		e.currentTarget.dispatchEvent( event );
+	}
+	
+	function Update( e, o){
+			
+		if(obj.isFunction){
+			console.log( o.bindElement );	
+			o.bindElement[o.bindProperty]( e.currentTarget.value );
+		}else{
+			
+			o.bindElement[o.bindProperty] = e.currentTarget.value;
+		}
+				
+	}
+}
+
+function radioButton( obj, element ){
+	
+	/*
 	var val = obj.value;
 		
 	element.addEventListener("valueChanged", valueChanged, false);
@@ -156,30 +207,11 @@ function toggleButton( obj, element ){
 		}
 				
 	}
+	*/
 }
 
 
 
-
-
-
-
-//TODO
-var extendedControls = {
-	
-	controlTypes : {
-		
-		toggleButton : function( value ){
-			
-			
-		},
-		
-		inputNumber : function (){
-			
-			
-		}
-	},	
-};
 
 
 			

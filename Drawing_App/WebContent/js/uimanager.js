@@ -1,3 +1,6 @@
+/**
+ * @author Nick Sullivan
+ */
 
 function UIManager() {
 
@@ -6,18 +9,28 @@ function UIManager() {
 	
 	this.manageUIElements = function( elements ) {
 		
-		this.uiElements = elements;
-		
 		for( element in elements ){
-			console.log(element, " : ", elements[element]);
+			
+			this.uiElements[ element ] = elements[ element ];
+			console.log(element, " : ", this.uiElements[ element ]);
 		}
 	};
 	
 	this.manageContext = function( context ) {
 
 		this.currentContext = context;
-		this.uiElements.objectProperties.createObjectProperties( this.uiElements[this.currentContext.toLowerCase()] ); //eval( "MainApp" + "." + this.currentContext )
+		this.uiElements.objectProperties.createObjectProperties( this.uiElements[ toCamelCase( this.currentContext ) ] );
 	};
 }
 
 
+
+/*TODO
+ * Needs work to become a true mechanism for converting to Camel Case
+ * Also move to Utility Library
+ */
+
+toCamelCase = function( words ){
+	
+	return words.replace( words.substr( 0, 1 ), words.substr( 0, 1 ).toLowerCase() );
+};
