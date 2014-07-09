@@ -4,12 +4,13 @@
 
 var Module_Base = (function(){
 
-	var Module = function( id, element, elementName, displayName, uiManager ){
+	var Module = function( id, element, elementName, displayName, objectName, uiManager ){
 						
 		this.id = id;
 		this.element = element || null;
 		this.elementName = elementName || null;
 		this.displayName = displayName || null;		
+		this.objectName = objectName || null;
 		this.uiManager = uiManager || null;
 		this.objectPropertiesDefault = {} || null;
 
@@ -18,12 +19,17 @@ var Module_Base = (function(){
 	
 	Module.prototype.initialise = function(){};
 	
-	Module.prototype.setAsContext = function( e ){
-			
-		if ( this.uiManager.currentContext != e.currentTarget.id ) {
+	Module.prototype.setAsContext = function(){ 
+
+		if ( this.uiManager.getUIContext() != this.objectName ) {
 					
-			this.uiManager.manageContext( e.currentTarget.id );
+			this.uiManager.setUIContext( this.objectName );
 		}
+	};
+	
+	Module.prototype.setObjectPropertiesDefault = function(){ 
+		
+		this.uiManager.setObjectPropertiesDefault( this.objectPropertiesDefault );
 	};
 	
 	return {

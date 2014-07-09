@@ -2,10 +2,18 @@
  * @author Nick Sullivan
  */
 
-ToolBar = function ( id, element, elementName, displayName, uiManager ) {
+ToolBar = function ( id, element, elementName, displayName, objectName, uiManager ) {
 
-	Module_Base.getModule().call( this, id, element, elementName, displayName, uiManager );
+	Module_Base.getModule().call( this, id, element, elementName, displayName, objectName, uiManager );
 
+	this.tools;
+	this.ToolBarItems;
+};
+
+ToolBar.prototype = Object.create( Module_Base.getModule().prototype );
+
+ToolBar.prototype.initialise = function(){
+	
 	this.tools = {
 
 		selectObject : {
@@ -15,16 +23,17 @@ ToolBar = function ( id, element, elementName, displayName, uiManager ) {
 			shortName : "Sel Obj",
 			shortCut : "Q",
 			state : "unselected",
+			mode : "select",
 	
 			objectPropertiesDefault : {
 				
 				autoSelect : {
 					label : "auto Select",
 					control : "input",
-					type : "button",
+					type : "checkBox",
 					value : false,
-					extend : toggleButton,
-					bindElement : this,
+					extend : checkBox,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
 					bindProperty : "setAutoSelect",
 					isFunction : true
 				},
@@ -32,10 +41,10 @@ ToolBar = function ( id, element, elementName, displayName, uiManager ) {
 				displayHandles : {
 					label : "display Handles",
 					control : "input",
-					type : "button",
+					type : "checkBox",
 					value : false,
-					extend : toggleButton,
-					bindElement : this,
+					extend : checkBox,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
 					bindProperty : "setDisplayHandles",
 					isFunction : true
 				},
@@ -66,7 +75,8 @@ ToolBar = function ( id, element, elementName, displayName, uiManager ) {
 			shortName : "Sel Ele",
 			shortCut : "W",
 			state : "unselected",
-	
+			mode : "select",
+			
 			objectPropertiesDefault : {
 				
 				selectPoint : {
@@ -74,9 +84,9 @@ ToolBar = function ( id, element, elementName, displayName, uiManager ) {
 					control : "input",
 					type : "radio",
 					name : "selectElement",
-					value : false,
+					value : "unchecked",
 					extend : radioButton,
-					bindElement : this,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
 					bindProperty : "setSelectPoint",
 					isFunction : true
 				},
@@ -85,10 +95,10 @@ ToolBar = function ( id, element, elementName, displayName, uiManager ) {
 					label : "select Segment",
 					control : "input",
 					type : "radio",
-					value : false,
+					value : "unchecked",
 					name : "selectElement",
 					extend : radioButton,
-					bindElement : this,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
 					bindProperty : "setSelectSegment",
 					isFunction : true
 				},
@@ -97,10 +107,10 @@ ToolBar = function ( id, element, elementName, displayName, uiManager ) {
 					label : "select Both",
 					control : "input",
 					type : "radio",
-					value : true,
+					value : "checked",
 					name : "selectElement",
 					extend : radioButton,
-					bindElement : this,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
 					bindProperty : "setSelectBoth",
 					isFunction : true
 				},
@@ -131,17 +141,40 @@ ToolBar = function ( id, element, elementName, displayName, uiManager ) {
 			shortName : "Cre Rec",
 			shortCut : "R",
 			state : "unselected",
-	
+			mode : "create",
+			
 			objectPropertiesDefault : {
 				
 				fromCenter : {
 					label : "from Center",
 					control : "input",
-					type : "button",
+					type : "checkBox",
 					value : false,
-					extend : toggleButton,
-					bindElement : this,
+					extend : checkBox,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
 					bindProperty : "setFromCenter",
+					isFunction : true
+				},
+				
+				x : {
+					label : "x",
+					control : "input",
+					type : "number",
+					value : 100,
+					extend : inputNumber,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
+					bindProperty : "setX",
+					isFunction : true
+				},
+				
+				y : {
+					label : "y",
+					control : "input",
+					type : "number",
+					value : 100,
+					extend : inputNumber,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
+					bindProperty : "setY",
 					isFunction : true
 				},
 				
@@ -151,8 +184,9 @@ ToolBar = function ( id, element, elementName, displayName, uiManager ) {
 					type : "number",
 					value : 100,
 					extend : inputNumber,
-					bindElement : this,
-					bindProperty : "width"
+					bindElement : this.uiManager.getUIElement( "canvas" ),
+					bindProperty : "setWidth",
+					isFunction : true
 				},
 				
 				height : {
@@ -161,26 +195,31 @@ ToolBar = function ( id, element, elementName, displayName, uiManager ) {
 					type : "number",
 					value : 100,
 					extend : inputNumber,
-					bindElement : this,
-					bindProperty : "width"
+					bindElement : this.uiManager.getUIElement( "canvas" ),
+					bindProperty : "setHeight",
+					isFunction : true
 				},
 				
 				fillColour : {
 					label : "fill Colour",
 					control : "input",
 					type : "color",
-					value : "#FF",
-					bindElement : this,
-					bindProperty : "color"
+					value : "#FF0000",
+					extend : colourSelect,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
+					bindProperty : "setFillStyle",
+					isFunction : true
 				},
 				
 				strokeColour : {
 					label : "stroke Colour",
 					control : "input",
 					type : "color",
-					value : "#FF",
-					bindElement : this,
-					bindProperty : "color"
+					value : "#0000FF",
+					extend : colourSelect,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
+					bindProperty : "setStrokeStyle",
+					isFunction : true
 				},
 				
 				strokeWeight : {
@@ -189,8 +228,9 @@ ToolBar = function ( id, element, elementName, displayName, uiManager ) {
 					type : "number",
 					value : 1,
 					extend : inputNumber,
-					bindElement : this,
-					bindProperty : "strokeWeight"
+					bindElement : this.uiManager.getUIElement( "canvas" ),
+					bindProperty : "setLineWidth",
+					isFunction : true
 				},
 				
 			},
@@ -220,11 +260,128 @@ ToolBar = function ( id, element, elementName, displayName, uiManager ) {
 			shortName : "Cre Eli",
 			shortCut : "E",
 			state : "unselected",
-	
+			mode : "create",
+			
 			objectPropertiesDefault : {
-	
+				
+				fromCenter : {
+					label : "from Center",
+					control : "input",
+					type : "checkBox",
+					value : true,
+					extend : checkBox,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
+					bindProperty : "setFromCenter",
+					isFunction : true
+				},
+				
+				x : {
+					label : "x",
+					control : "input",
+					type : "number",
+					value : 100,
+					extend : inputNumber,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
+					bindProperty : "setX",
+					isFunction : true
+				},
+				
+				y : {
+					label : "y",
+					control : "input",
+					type : "number",
+					value : 100,
+					extend : inputNumber,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
+					bindProperty : "setY",
+					isFunction : true
+				},
+				
+				radius : {
+					label : "radius",
+					control : "input",
+					type : "number",
+					min : 0,
+					max : 10000,
+					value : 100,
+					extend : inputNumber,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
+					bindProperty : "setRadius",
+					isFunction : true
+				},
+				
+				startAngle : {
+					label : "startAngle",
+					control : "input",
+					type : "number",
+					min : 0,
+					max : 360,
+					value : 0,
+					extend : inputNumber,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
+					bindProperty : "setStartAngle",
+					isFunction : true
+				},
+				
+				endAngle : {
+					label : "endAngle",
+					control : "input",
+					type : "number",
+					min : 0,
+					max : 360,
+					value : 360,
+					extend : inputNumber,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
+					bindProperty : "setEndAngle",
+					isFunction : true
+				},
+				
+				direction : {
+					label : "direction",
+					control : "input",
+					type : "checkBox",
+					value : false,
+					extend : checkBox,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
+					bindProperty : "setDirection",
+					isFunction : true
+				},
+				
+				fillColour : {
+					label : "fill Colour",
+					control : "input",
+					type : "color",
+					value : "#FF0000",
+					extend : colourSelect,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
+					bindProperty : "setFillStyle",
+					isFunction : true
+				},
+				
+				strokeColour : {
+					label : "stroke Colour",
+					control : "input",
+					type : "color",
+					value : "#0000FF",
+					extend : colourSelect,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
+					bindProperty : "setStrokeStyle",
+					isFunction : true
+				},
+				
+				strokeWeight : {
+					label : "stroke Weight",
+					control : "input",
+					type : "number",
+					value : 1,
+					extend : inputNumber,
+					bindElement : this.uiManager.getUIElement( "canvas" ),
+					bindProperty : "setLineWidth",
+					isFunction : true
+				},
+				
 			},
-	
+			
 			iconNormal : {
 				x : 0,
 				y : -150
@@ -250,7 +407,8 @@ ToolBar = function ( id, element, elementName, displayName, uiManager ) {
 			shortName : "Cre Lin",
 			shortCut : "L",
 			state : "unselected",
-	
+			mode : "create",
+			
 			objectPropertiesDefault : {
 	
 			},
@@ -280,7 +438,8 @@ ToolBar = function ( id, element, elementName, displayName, uiManager ) {
 			shortName : "Cre Crv",
 			shortCut : "T",
 			state : "unselected",
-	
+			mode : "create",
+			
 			objectPropertiesDefault : {
 	
 			},
@@ -303,14 +462,15 @@ ToolBar = function ( id, element, elementName, displayName, uiManager ) {
 			},
 		},
 
-		createLText : {
+		createText : {
 	
 			id : 6,
 			longName : "Create Text",
 			shortName : "Cre Txt",
 			shortCut : "Y",
 			state : "unselected",
-	
+			mode : "create",
+			
 			objectPropertiesDefault : {
 	
 			},
@@ -340,7 +500,8 @@ ToolBar = function ( id, element, elementName, displayName, uiManager ) {
 			shortName : "Cvs Zom",
 			shortCut : "Z",
 			state : "unselected",
-	
+			mode : "manipulate",
+			
 			objectPropertiesDefault : {
 	
 			},
@@ -370,7 +531,8 @@ ToolBar = function ( id, element, elementName, displayName, uiManager ) {
 			shortName : "Cvs Pan",
 			shortCut : "P",
 			state : "unselected",
-	
+			mode : "manipulate",
+			
 			objectPropertiesDefault : {
 	
 			},
@@ -393,15 +555,8 @@ ToolBar = function ( id, element, elementName, displayName, uiManager ) {
 			},
 		},
 	};
-	
-	this.ToolBarItems;
-};
 
-ToolBar.prototype = Object.create( Module_Base.getModule().prototype );
-
-ToolBar.prototype.initialise = function(){
-	
-	this.ToolBarItems = new ToolBarItems( 0, document.getElementById(  "ToolBarItems" ), "ToolBarItems", "Tool Bar Items", this.uiManager);
+	this.ToolBarItems = new ToolBarItems( 0, document.getElementById(  "ToolBarItems" ), "ToolBarItems", "Tool Bar Items", "toolBarItems", this.uiManager);
 	this.ToolBarItems.initialise( this.tools );
 };
 
@@ -409,11 +564,11 @@ ToolBar.prototype.initialise = function(){
 //--------->
 
 
-ToolBarItems = function ( id, element, elementName, displayName, uiManager ) {
+ToolBarItems = function ( id, element, elementName, displayName, objectName, uiManager ) {
 	
-	Module_Base.getModule().call( this, id, element, elementName, displayName, uiManager );
+	Module_Base.getModule().call( this, id, element, elementName, displayName, objectName, uiManager );
 	
-	this.ToolBarItems = [];
+	this.toolBarItems = {};
 	this.previousChecked;
 	this.currentChecked;
 };
@@ -422,34 +577,27 @@ ToolBarItems.prototype = Object.create( Module_Base.getModule().prototype );
 
 ToolBarItems.prototype.initialise = function( tools ){
 	
-	var keys = [];
-	var toolbarItems = {};
-	var i = 0;
 	for( objects in tools ){
 
-		var toolbarItem = "ToolBarItem_" + tools[ objects ].id;
-		var toolbarItemInput = toolbarItem + " input";
-		var toolbarItemInputElement = document.querySelector( "#" + toolbarItemInput );
-		var toolbarItemDisplayName = tools[ objects ].longName + " (" + tools[ objects ].shortCut + ")";
+		var toolBarItem = "ToolBarItem_" + tools[ objects ].id;
+		var toolBarItemInput = toolBarItem + " input";
+		var toolBarItemInputElement = document.querySelector( "#" + toolBarItemInput );
+		var toolBarItemDisplayName = tools[ objects ].longName + " (" + tools[ objects ].shortCut + ")";
+		var objectName = objects;
 		
-		this.ToolBarItems[ tools[ objects ].id ] = new ToolBarItem( tools[ objects ].id, toolbarItemInputElement, toolbarItem, toolbarItemDisplayName, this.uiManager );
-		this.ToolBarItems[ tools[ objects ].id ].initialise( tools[ objects ], this );
-		
-		keys[ i ] = toolbarItemInputElement.id;
-		toolbarItems[ keys[ i ] ] = this.ToolBarItems[ tools[ objects ].id ];
-				
-		i += 1;
+		this.toolBarItems[ objects ] = new ToolBarItem( tools[ objects ].id, toolBarItemInputElement, toolBarItem, toolBarItemDisplayName, objectName, this.uiManager );
+		this.toolBarItems[ objects ].initialise( tools[ objects ], this );
 	}
-	
-	this.uiManager.manageUIElements( toolbarItems );
+
+	this.uiManager.addUIElements( this.toolBarItems );
 };
 
 //--------->
 
 
-ToolBarItem = function ( id, element, elementName, displayName, uiManager ) {
+ToolBarItem = function ( id, element, elementName, displayName, objectName, uiManager ) {
 
-	Module_Base.getModule().call( this, id, element, elementName, displayName, uiManager );
+	Module_Base.getModule().call( this, id, element, elementName, displayName, objectName, uiManager );
 	
 	this.id = id;
 	this.toolBar;	
@@ -459,9 +607,11 @@ ToolBarItem = function ( id, element, elementName, displayName, uiManager ) {
 	this.element.addEventListener("mouseover", this.mouseOverEvent, false );
 	this.element.addEventListener("mouseout", this.mouseOutEvent, false );
 	this.element.addEventListener("click", this.clickEvent, false );
+	this.element.addEventListener("dblclick", this.doubleClickEvent, false );
 };
 
 ToolBarItem.prototype = Object.create( Module_Base.getModule().prototype );
+
 
 ToolBarItem.prototype.initialise = function( toolBarItem, toolBarItems ){
 	
@@ -469,11 +619,12 @@ ToolBarItem.prototype.initialise = function( toolBarItem, toolBarItems ){
 	this.toolBarItems = toolBarItems;
 	this.objectPropertiesDefault = this.toolBarItem.objectPropertiesDefault;
 	
-	var toolbarItemImage = "#ToolBarItem_" + this.id + " img";		
-	this.iconImage = document.querySelector( toolbarItemImage );
+	var toolBarItemImage = "#ToolBarItem_" + this.id + " img";		
+	this.iconImage = document.querySelector( toolBarItemImage );
 
 	this.setNormalState();
 };
+
 
 ToolBarItem.prototype.setNormalState = function(){
 	
@@ -498,10 +649,21 @@ ToolBarItem.prototype.setIconPosition = function( iconState ){
 	this.iconImage.style.top = iconPosition.y + "px";
 };
 
+
+ToolBarItem.prototype.createShape = function( o ){
+	
+	/* TODO
+	 * Send Object Properties to Canvas function of the same name
+	 * CreateShape function needs to be created on Canvas
+	 */
+	
+	this.uiManager.getUIElement( "canvas" )[ this.element.id ]( o );
+};
+
+
 ToolBarItem.prototype.mouseOverEvent = function( e ) {
 
 	this.checked ? this.bind.setDownState() : this.bind.setOverState();
-	
 };
 
 ToolBarItem.prototype.mouseOutEvent = function( e ) {
@@ -517,6 +679,12 @@ ToolBarItem.prototype.clickEvent = function( e ) {
 	this.bind.toolBarItems.previousChecked != undefined ? this.bind.toolBarItems.previousChecked.setNormalState() : false;
 
 	this.bind.setDownState();
-	this.bind.setAsContext( e );
+	this.bind.setAsContext();
+	//TODO Setup Subscriber to "ObjectPropertiesDefault"
+	this.bind.setObjectPropertiesDefault();
 };
 
+ToolBarItem.prototype.doubleClickEvent = function( e ) {
+	
+	this.bind.createShape( this.bind.objectPropertiesDefault );
+};

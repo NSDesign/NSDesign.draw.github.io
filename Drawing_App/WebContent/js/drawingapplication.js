@@ -81,6 +81,30 @@ A.prototype.AM = function(){};
 var AB = new A();
 //console.log(AB);
 
+/////////////////////////////////////////////////////////////
+
+var o = {
+	
+	a: 7, 
+	
+	get b() {
+		return this.a + 1;
+	},
+	
+	set b(x) {
+		this.a = x / 2;
+	}
+};
+
+console.log(o.a, o.b = 5, o.b);
+
+/*
+var z = { a:0 };
+Object.defineProperties(z, {
+    "b": { get: function () { return this.a + 1; } },
+    "c": { set: function (x) { this.a = x / 2; } }
+});
+*/
 
 
 

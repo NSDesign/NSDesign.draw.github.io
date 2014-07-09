@@ -1,15 +1,19 @@
 
-function ObjectProperties( id, element, elementName, displayName, uiManager ) {
+function ObjectProperties( id, element, elementName, displayName, objectName, uiManager ) {
 
-	Module_Base.getModule().call( this, id, element, elementName, displayName, uiManager );
-
-	this.createObjectProperties = function( o ) {
+	Module_Base.getModule().call( this, id, element, elementName, displayName, objectName, uiManager );
 	
-		var objPropsDefault = o.objectPropertiesDefault;
+	this.objectPropertiesDefault;
+	this.uiManager.addPublisher( { publisherObject : this, publisherProperty : "objectPropertiesDefault" } );
+	this.uiManager.addSubscriber( { subscriberObject : this, subscriberProperty : "objectPropertiesDefault" } );
+	
+	this.createObjectProperties = function( contextObject ) {
+		
+		var objPropsDefault = this.objectPropertiesDefault || contextObject.objectPropertiesDefault;
 			
-		ObjectPropertiesContainer.innerHTML = "";
+		ObjectProperties_Container.innerHTML = "";
 		var objPropsContainer = document.createElement( "div" );
-		ObjectPropertiesContainer.appendChild( objPropsContainer );
+		ObjectProperties_Container.appendChild( objPropsContainer );
 
 		for ( objectProperties in objPropsDefault ) {
 			
@@ -18,7 +22,7 @@ function ObjectProperties( id, element, elementName, displayName, uiManager ) {
 			
 			oPropContainer.appendChild( document.createTextNode( " " + objPropsDefault[ objectProperties ].label + " " ) );
 			oPropContainer.appendChild( document.createElement( "br" ) );			
-			oPropContainer.appendChild( createControl( objPropsDefault[ objectProperties ] ) );
+			oPropContainer.appendChild( createControl( this, objPropsDefault, objectProperties ) );
 		}		
 	};
 };

@@ -26,11 +26,7 @@ body{
 	user-select : none;
 }
 
-div{
-
-	background-color : rgba(255, 255, 255, 0.75);
-	padding : 3px 6px 3px 6px;
-}
+div{}
 
 hgroup{
 
@@ -47,6 +43,27 @@ div{}
 
 .UI_MainMenu{}
 
+.UI_MainMenu hgroup{
+
+	float : left;
+}
+
+.UI_MainMenu div{
+	
+	margin : 0px;
+	padding : 1.75px;
+	float : left;	
+}
+
+.UI_MainMenu_Options{
+	
+	position : absolute;
+}
+
+#MainMenu_Container{
+	
+	visibility : hidden;
+}
 
 <!--
 UI LISTS
@@ -107,11 +124,16 @@ div{}
 
 .UI_ToolBar{
 	
+	/*
+	 * 
 	position : absolute;
 	top : 92px;
 	left : 0px;
+	 */
+	
+	
+	float : left;
 	width : 50px;
-	border : 1px solid black;
 	padding : 0px;
 	margin : 0px;
 	z-index: 10;
@@ -144,7 +166,7 @@ ol:last-child{
 }
 */
 
-#ToolBarItems_Select{}tems_Create{}
+#ToolBarItems_Select{}#ToolBarItems_Create{}
 #ToolBarItems_Canvas{}
 
 .UI_ToolBarItem{
@@ -156,7 +178,8 @@ ol:last-child{
 	overflow : hidden;
 }
 
-input[ type="radio" ]{
+.UI_ToolBarItem input[ type="radio" ]{
+
 	position : relative;
 	top : -50px;
 	width : inherit;
@@ -193,34 +216,35 @@ UI CANVAS
 
 canvas{}
 
+#Canvas_Container{
+
+	position : relative;
+	/*top : 80px;
+	left : 50px;
+	width : 100%;
+	bottom : 0px;
+	margin : auto;
+	border : 1px solid red;*/
+	/**/
+	pointer-events : none;
+}
+
+#Canvas{
+	
+	/*top : -152px; height of Canvas Adorners*/
+	z-index : 0;	
+}
+
+#Canvas_Adorners{
+	
+	z-index : 1;
+}
+
 .UI_Canvas{
 
-	position : absolute;
+	position : relative;
 	margin : 0%;
-	border : 1px solid black;
-	z-index: -1;
-}
 
-
-<!--
-UI TEST OUTPUT /////////////////////////////////////////////////////
--->
-
-div{}
-
-#TestControl{
-
-	width: 500px;
-	border : 2px solid black;
-	margin : auto;
-	text-align: center;
-	z-index : 1000;
-}
-
-.UI_TestOutput{
-
-	border : 2px solid black;
-	margin : 5px;
-	z-index : 1000;
+	pointer-events : auto;
 }
 

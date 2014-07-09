@@ -12,6 +12,7 @@
 	<script type="text/javascript" src="WebContent/js/main.js"></script>
 	<script type="text/javascript" src="WebContent/js/drawingapplication.js"></script>
 	
+	<script type="text/javascript" src="WebContent/js/geometry.js"></script>
 	<script type="text/javascript" src="WebContent/js/inputmanager.js"></script>
 	<script type="text/javascript" src="WebContent/js/uimanager.js"></script>
 	<script type="text/javascript" src="WebContent/js/mainmenu.js"></script>
@@ -27,11 +28,21 @@
 <body>
 	<div id="MainMenu" class="UI_MainMenu">
 		<hgroup>Main Menu</hgroup>
+		<div id="MainMenu_Container" >
+			<ol id="MainMenu_Options" class="UI_MainMenu_Options">
+				<input type="button" value="File">
+				<li><input type="button" value="New"></li>
+				<li><input type="button" value="Open"></li>
+				<li><input type="button" value="Save"></li>
+				<li><input type="button" value="Save As"></li>
+				<li><input type="button" value="Export"></li>
+			</ol>
+		</div>
 	</div>
 	
 	<div id="ObjectProperties" class="UI_ObjectProperties">
 		<hgroup>Object Properties</hgroup>
-		<div id="ObjectPropertiesContainer" ></div>
+		<div id="ObjectProperties_Container" ></div>
 	</div>
 	
 	<div id="ToolBar" class="UI_ToolBar" >
@@ -58,8 +69,11 @@
 		</ol>		
 	</div>
 	
-	<canvas id="Canvas" class="UI_Canvas" ></canvas>
-	
+	<div id="Canvas_Container">
+		<canvas id="Canvas" class="UI_Canvas"></canvas>
+		<canvas id="Canvas_Adorners" class="UI_Canvas"></canvas>
+		<canvas id="Canvas_Selection" class="UI_Canvas"></canvas>
+	</div>
 	
 </body>
 </html>

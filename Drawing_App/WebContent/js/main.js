@@ -11,17 +11,18 @@ function MainApp() {
 	
 	var instance = this;
 	
-	this.UIManager = new UIManager();
-	this.UIManager.manageUIElements( 
+	this.UIManager = UIManager;
+	this.UIManager.addUIElements( 
 		{ 
-			mainMenu : new MainMenu( 0, document.getElementById( "MainMenu" ), "MainMenu", "Main Menu", this.UIManager ),
-			objectProperties : new ObjectProperties( 1, document.getElementById( "ObjectProperties" ), "ObjectProperties", "Object Properties", this.UIManager ),
-			toolBar : new ToolBar( 2, document.getElementById( "ToolBar" ), "ToolBar", "Tool Bar", this.UIManager ),
-			canvas : new Canvas( 3, document.getElementById( "Canvas" ), "Canvas", "Drawing Canvas", this.UIManager ),		
+			mainMenu : new MainMenu( 0, document.getElementById( "MainMenu" ), "MainMenu", "Main Menu", "mainMenu", this.UIManager ),
+			objectProperties : new ObjectProperties( 1, document.getElementById( "ObjectProperties" ), "ObjectProperties", "Object Properties", "objectProperties", this.UIManager ),
+			canvas : new Canvas( 3, document.getElementById( "Canvas" ), "Canvas", "Drawing Canvas", "canvas", this.UIManager ),
+			toolBar : new ToolBar( 2, document.getElementById( "ToolBar" ), "ToolBar", "Tool Bar", "toolBar", this.UIManager ),	
 		}
 	);
-	this.UIManager.uiElements.canvas.initialise();
-	this.UIManager.uiElements.toolBar.initialise();
+	
+	this.UIManager.getUIElement( "canvas" ).initialise();
+	this.UIManager.getUIElement( "toolBar" ).initialise();
 	
 	/*
 	 * 	 
