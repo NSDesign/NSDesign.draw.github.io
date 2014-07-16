@@ -4,8 +4,7 @@ function ObjectProperties( id, element, elementName, displayName, objectName, ui
 	Module_Base.getModule().call( this, id, element, elementName, displayName, objectName, uiManager );
 	
 	this.objectPropertiesDefault;
-	this.uiManager.addPublisher( { publisherObject : this, publisherProperty : "objectPropertiesDefault" } );
-	this.uiManager.addSubscriber( { subscriberObject : this, subscriberProperty : "objectPropertiesDefault" } );
+	
 	
 	this.createObjectProperties = function( contextObject ) {
 		

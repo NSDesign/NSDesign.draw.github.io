@@ -83,29 +83,45 @@ var AB = new A();
 
 /////////////////////////////////////////////////////////////
 
+/*//Get Set looks like error but works fine
 var o = {
 	
 	a: 7, 
 	
-	get b() {
+	get get() {
 		return this.a + 1;
 	},
 	
-	set b(x) {
+	set set(x) {
 		this.a = x / 2;
 	}
 };
-
-console.log(o.a, o.b = 5, o.b);
-
-/*
-var z = { a:0 };
-Object.defineProperties(z, {
-    "b": { get: function () { return this.a + 1; } },
-    "c": { set: function (x) { this.a = x / 2; } }
-});
 */
 
+
+var o = { a : 7 };
+Object.defineProperties(o, {
+    "get": { get: function () { return this.a + 2; } },
+    "set": { set: function (x) { this.a = x / 2; } }
+});
+
+var person = {
+    firstName: 'Jimmy',
+    lastName: 'Smith',
+};
+
+Object.defineProperty(person, 'fullName', {
+    get: function() {
+        return firstName + ' ' + lastName;
+    },
+    set: function(name) {
+        var words = name.split(' ');
+        this.firstName = words[0] || '';
+        this.lastName = words[1] || '';
+    }
+});
+
+//console.log(o.a, o.set = 15, o.get);
 
 
 

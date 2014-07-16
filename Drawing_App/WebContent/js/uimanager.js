@@ -3,9 +3,9 @@
  */
 
 //TODO
-//Look at this variable - inside function "this" refers to "Window"
+//Look at the 'this' variable - inside function "this" refers to "Window" - I don't think that this is actually required
 //Can it be wrapped in another variable or object to isolate from the "Window"
-
+//Currently it seems to be a form of Static object
 
 var UIManager = (function() {
 	
@@ -16,37 +16,20 @@ var UIManager = (function() {
 	this.uiElements = {};
 	this.uiShapes = {};
 	
-	this.publishers = {};
-	this.subscribers = {};
 	
-	this.managePublishers = function( publisherDetails ){
-		
-		this.publishers[ publisherDetails.publisherObject.elementName ] = publisherDetails;
-		console.log("PUBLISHERS :", this.publishers);
-	};
-	
-	this.manageSubscribers = function( subscriberDetails ){
-		
-		this.subscribers[ subscriberDetails.subscriberObject.elementName ] = subscriberDetails;
-		console.log("SUBSCRIBERS :", this.subscribers);
-	};
-	
-	this.updateSubscribers = function(){
-		
-		console.log("SUBSCRIBERS UPDATED :");
-	};
+
 	
 	this.manageObjectPropertiesDefault = function( objPropsDefault ){
 		
 		this.objectPropertiesDefault = objPropsDefault;
-		console.log( "OBJECT PROPERTIES DEFAULT : ", this.objectPropertiesDefault );
+//console.log( "OBJECT PROPERTIES DEFAULT : ", this.objectPropertiesDefault );
 	};
 	
 	this.manageUIShapes = function( shape ){
 		
 		shape.idNum = Object.keys( this.uiShapes ).length;
 		this.uiShapes[ shape.idName + "_" + shape.idNum ] = shape;
-		console.log("UI SHAPES : ", this.uiShapes);
+//console.log("UI SHAPES : ", this.uiShapes);
 	};
 	
 	this.manageUIElements = function( elements ) {
@@ -54,18 +37,20 @@ var UIManager = (function() {
 		for( element in elements ){
 			
 			this.uiElements[ element ] = elements[ element ];
-			console.log("UI ELEMENTS : ", element, " : ", this.uiElements[ element ]);
+//console.log("UI ELEMENTS : ", element, " : ", this.uiElements[ element ]);
 		}
 	};
 	
-	this.manageMode = function( mode ){
+	this.manageUIMode = function( mode ){
+		
+//console.log("MODE : ", mode);
 		
 		this.currentUIMode = mode;	
 	};
 	
 	this.manageUIContext = function( context ) {
 		
-		console.log("CONTEXT : ", context);
+//console.log("CONTEXT : ", context);
 		
 		this.currentUIContext = context;
 		
@@ -78,7 +63,7 @@ var UIManager = (function() {
 		this.uiElements.objectProperties.objectPropertiesDefault = this.objectPropertiesDefault;
 		this.uiElements.objectProperties.createObjectProperties();
 				
-		this.currentUIContext != "canvas" ? this.uiElements.canvas.updateCanvasContext() : false;
+		this.currentUIContext != "canvasDraw" ? this.uiElements.canvasDraw.updateCanvasContext() : false;
 	};
 	
 	return {
@@ -102,7 +87,7 @@ var UIManager = (function() {
 			
 		setUIMode : function( mode ){
 				
-			manageMode( mode );
+			manageUIMode( mode );
 		},
 			
 		//UIElements
@@ -157,28 +142,5 @@ var UIManager = (function() {
 			
 			manageObjectPropertiesDefault( objPropsDefault );
 		},
-		
-		//Publishers and Subscribers
-		addSubscriber : function( subscriber ){
-			
-			manageSubscribers( subscriber );
-		},
-		
-		removeSubscriber : function( subscriber ){
-			
-			delete subscribers[ subscriber ];
-		},
-		
-		addPublisher : function( publisher ){
-			
-			managePublishers( publisher );
-		},
-		
-		removePublisher : function( publisher ){
-			
-			delete publishers[ publisher ];
-		},
-		
-		
 	};
 })();

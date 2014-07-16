@@ -8,10 +8,9 @@
 		
 		Module_Base.getModule().call( this, id, element, elementName, displayName, objectName, uiManager );
 		
-		this.centroid;
-		this.context;
-		this.gridImage;
-		this.gridSize;
+		this.canvas = this.element;
+		this.context = this.canvas.getContext( "2d" );		
+
 		this.objectPropertiesDefault = {
 				
 				x : {
@@ -71,10 +70,10 @@
 					label : "grid size",
 					control : "input",
 					type : "number",
-					value : 5,
-					step : 5,
+					value : 10,
+					step : 1,
 					min : 5,
-					max : 50,
+					max : 500,
 					extend : inputNumber,
 					bindElement : this,
 					bindProperty : "setGridSize",
@@ -94,6 +93,9 @@
 			};
 		this.element.bind = this; //Required for 'this' in event handler
 		
+		this.gridSize;
+        this.centroid;
+        
 		this.element.addEventListener("click", this.clickEvent, false );
 		//this.element.addEventListener("mouseover", this.mouseOverEvent, false );
 	};
@@ -105,65 +107,40 @@
 		var o = o || this.objectPropertiesDefault;
 		var canvas = this.element;
 		this.context = canvas.getContext( "2d" );
-		
+		this.gridSize = o.gridSize.value;
+
 		canvas.style.left = o.x.value + "px";
 		canvas.style.top = o.y.value + "px";	
 		canvas.width = o.width.value; 
 		canvas.height = o.height.value;
 			
-		if( o.showGrid.value ){
-				
-			this.gridImage = 'WebContent/images/Grid_' + o.gridSize.value + 'x' + o.gridSize.value + '_px.png';
-			canvas.style.backgroundImage = "url(" + this.gridImage + ")";
-			canvas.style.position = "top left";
-			canvas.style.repeat = "repeat";
-			canvas.style.attachment = "fixed";
-		}else{
-				
-			canvas.style.backgroundImage = null;
-		}
-				
-	};
-	
-	Canvas.prototype.getCentroid = function(){
 		
-		return this.centroid = {
-			x : this.element.width / 2,
-			y : this.element.height / 2
-		};
+		if( o.showGrid.value ){
+			
+			this.context.rect( o.x.value, o.y.value, o.width.value, o.height.value );			
+			this.showGridPattern();
+		}else{
+			
+			this.hideGridPattern();
+		}
 	};
-	
 	
 	Canvas.prototype.setGridVisibility = function( showGrid ) {
 			
-		var canvas = this.element;
-			
-		showGrid = ( eval( showGrid ) );
-		if( showGrid ){
-		
-			canvas.style.backgroundImage = "url(" + this.gridImage + ")";
-			canvas.style.position = "top left";
-			canvas.style.repeat = "repeat";
-			canvas.style.attachment = "fixed";
+		if( eval( showGrid ) ){
+		    
+		    this.showGridPattern();
 		}else{
-				
-			canvas.style.backgroundImage = null;
+			
+			this.hideGridPattern();
 		}
 	};
 				
 	Canvas.prototype.setGridSize = function( gridSize ) {
 		
 		this.gridSize = gridSize;
-		var canvas = this.element;
-		
-		if( gridSize <= this.objectPropertiesDefault.gridSize.max ){
-				
-			this.gridImage = 'WebContent/images/Grid_' + gridSize + 'x' + gridSize + '_px.png';
-			canvas.style.backgroundImage = "url(" + this.gridImage + ")";
-			canvas.style.position = "top left";
-			canvas.style.repeat = "repeat";
-			canvas.style.attachment = "fixed";
-		}
+        
+        this.showGridPattern(); 
 	};
 	
 	Canvas.prototype.setSnapToGridPoint = function( gridSize ) {
@@ -171,11 +148,63 @@
 		console.log( " TODO : Implement Snap To Grid Functionality " );
 	};
 	
+	Canvas.prototype.showGridPattern = function(){
+	    
+	    this.context.clearRect( 0, 0, this.element.width, this.element.height );
+        this.context.fillStyle = this.getGridPattern( this.gridSize, "gray" );   
+        this.context.fill();
+	};
+	
+	Canvas.prototype.hideGridPattern = function(){
+        
+        this.context.clearRect( 0, 0, this.element.width, this.element.height );
+    };
+    
+    
+	Canvas.prototype.getGridPattern = function( gridSize, gridColour ) {
+        
+        var gridCanvas = document.createElement( "canvas" );
+        var gridCanvasContext = gridCanvas.getContext( "2d" );
+        var lineWidth = 1;
+        var lineWidthOffset = lineWidth;
+        
+        
+        gridCanvas.width = gridSize * 2; 
+        gridCanvas.height = gridSize * 2;
+        
+        gridCanvasContext.moveTo( 0, lineWidthOffset );
+        gridCanvasContext.lineTo( gridSize * 2, lineWidthOffset );
+        
+        gridCanvasContext.moveTo( lineWidthOffset, 0 );
+        gridCanvasContext.lineTo( lineWidthOffset, gridSize * 2 );
+        
+        gridCanvasContext.moveTo( gridSize + lineWidthOffset, 0 );
+        gridCanvasContext.lineTo( gridSize + lineWidthOffset, gridSize * 2 );
+        
+        gridCanvasContext.moveTo( 0, gridSize + lineWidthOffset );
+        gridCanvasContext.lineTo( gridSize * 2, gridSize + lineWidthOffset );
+        
+        gridCanvasContext.lineWidth = lineWidth;
+        gridCanvasContext.strokeStyle = gridColour;
+        gridCanvasContext.stroke();
+        
+        return gridCanvasContext.createPattern( gridCanvas, "repeat" );
+    };
+    
+    Canvas.prototype.getCentroid = function(){
+        
+        return this.centroid = {
+            x : this.element.width / 2,
+            y : this.element.height / 2
+        };
+    };
+    
 	//Canvas.prototype.mouseOverEvent = function( e ) {};
 	
 	Canvas.prototype.clickEvent = function( e ) {
 
 		this.bind.setAsContext(); 
+		
 		this.bind.setObjectPropertiesDefault();
 	};
 	
@@ -321,7 +350,8 @@
 			);
 			
 		rect.RenderGeometry( this.context, this );
-		rect.RenderAdorners( this.context, this );
+		
+		rect.RenderAdorners( this.uiManager.getUIElement( "canvasAdorners" ).context, this.uiManager.getUIElement( "canvasAdorners" ) );
 		
 		this.uiManager.addUIShape( rect );
 		
@@ -384,6 +414,56 @@
 ////Create Line
 
 ////Create Text
+
+    Canvas.prototype.setFont = function( f ){
+    
+        this.context.font = f;
+    };
+    
+    Canvas.prototype.getFont = function(){
+    
+        return this.context.font;
+    };
+    
+    Canvas.prototype.setFontSize = function( f ){
+    
+        this.context.fontSize = f;
+    };
+    
+    Canvas.prototype.getFontSize = function(){
+    
+        return this.context.fontSize;
+    };
+    
+    Canvas.prototype.setFontStyle = function( f ){
+    
+        this.context.fontStyle = f;
+    };
+    
+    Canvas.prototype.getFontStyle = function(){
+    
+        return this.context.fontStyle;
+    };
+    
+    Canvas.prototype.setFontWeight = function( f ){
+    
+        this.context.fontWeight = f;
+    };
+    
+    Canvas.prototype.getFontWeight = function(){
+    
+        return this.context.fontWeight;
+    };
+    
+    Canvas.prototype.setFontVariant = function( f ){
+    
+        this.context.fontVariant = f;
+    };
+    
+    Canvas.prototype.getFontVariant = function(){
+    
+        return this.context.fontVariant;
+    };
 
 
 
