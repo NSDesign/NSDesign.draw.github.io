@@ -160,7 +160,6 @@
         this.context.clearRect( 0, 0, this.element.width, this.element.height );
     };
     
-    
 	Canvas.prototype.getGridPattern = function( gridSize, gridColour ) {
         
         var gridCanvas = document.createElement( "canvas" );
@@ -199,15 +198,30 @@
         };
     };
     
-	//Canvas.prototype.mouseOverEvent = function( e ) {};
+	Canvas.prototype.mouseOverEvent = function( e ) {
+	    
+	};
+	
+	Canvas.prototype.mouseDownEvent = function( e ) {
+        
+        switch( this.uiManager.getUIMode() ){
+            
+            case "select" :
+            
+            break;
+            
+            case "create" :
+            
+            break;
+            
+        }
+    };
 	
 	Canvas.prototype.clickEvent = function( e ) {
 
-		this.bind.setAsContext(); 
-		
+		this.bind.setAsContext();		
 		this.bind.setObjectPropertiesDefault();
 	};
-	
 	
 	
 /*
@@ -256,8 +270,7 @@
 	Canvas.prototype.setFromCenter = function( b ){
 		
 		this.context.fromCenter = b;
-	};
-	
+	};	
 	Canvas.prototype.getFromCenter = function(){
 		
 		return this.context.fromCenter;
@@ -266,8 +279,7 @@
 	Canvas.prototype.setX = function( x ){
 	
 		this.context.x = x;
-	};
-	
+	};	
 	Canvas.prototype.getX = function(){
 	
 		return Number( this.context.x );
@@ -276,8 +288,7 @@
 	Canvas.prototype.setY = function( y ){
 	
 		this.context.y = y;
-	};
-	
+	};	
 	Canvas.prototype.getY = function(){
 	
 		return Number( this.context.y );
@@ -286,8 +297,7 @@
 	Canvas.prototype.setFillStyle = function( c ){
 
 		this.context.fillStyle = c;
-	};
-	
+	};	
 	Canvas.prototype.getFillStyle = function(){
 
 		return this.context.fillStyle;
@@ -296,8 +306,7 @@
 	Canvas.prototype.setStrokeStyle = function( c ){
 
 		this.context.strokeStyle = c;
-	};
-	
+	};	
 	Canvas.prototype.getStrokeStyle = function(){
 
 		return this.context.strokeStyle;
@@ -306,8 +315,7 @@
 	Canvas.prototype.setLineWidth = function( w ){
 	
 		this.context.lineWidth = w;
-	};
-		
+	};	
 	Canvas.prototype.getLineWidth = function(){
 	
 		return Number( this.context.lineWidth );
@@ -317,8 +325,7 @@
 	Canvas.prototype.setWidth = function( w ){
 	
 		this.context.width = w;
-	};
-	
+	};	
 	Canvas.prototype.getWidth = function(){
 	
 		return Number( this.context.width );
@@ -328,7 +335,6 @@
 	
 		this.context.height = h;
 	};
-	
 	Canvas.prototype.getHeight = function(){
 	
 		return Number( this.context.height );
@@ -354,9 +360,6 @@
 		rect.RenderAdorners( this.uiManager.getUIElement( "canvasAdorners" ).context, this.uiManager.getUIElement( "canvasAdorners" ) );
 		
 		this.uiManager.addUIShape( rect );
-		
-		//TODO
-		//Rectangle needs to be added to uiManager.uiElements so it can be made the application 'Context' upon selection therfore enabling editing of properties 
 	};
 	
 ////Create Ellipse
@@ -364,8 +367,7 @@
 	Canvas.prototype.setRadius = function( r ){
 	
 		this.context.radius = r;
-	};
-	
+	};	
 	Canvas.prototype.getRadius = function(){
 	
 		return Number( this.context.radius );
@@ -374,8 +376,7 @@
 	Canvas.prototype.setStartAngle = function( s ){
 	
 		this.context.startAngle = s;
-	};
-	
+	};	
 	Canvas.prototype.getStartAngle = function(){
 	
 		return Number( this.context.startAngle );
@@ -384,8 +385,7 @@
 	Canvas.prototype.setEndAngle = function( e ){
 	
 		this.context.endAngle = e;
-	};
-	
+	};	
 	Canvas.prototype.getEndAngle = function(){
 	
 		return Number( this.context.endAngle );
@@ -394,8 +394,7 @@
 	Canvas.prototype.setDirection = function( d ){
 	
 		this.context.direction = d;
-	};
-	
+	};	
 	Canvas.prototype.getDirection = function(){
 	
 		return this.context.direction;
@@ -418,8 +417,7 @@
     Canvas.prototype.setFont = function( f ){
     
         this.context.font = f;
-    };
-    
+    };  
     Canvas.prototype.getFont = function(){
     
         return this.context.font;
@@ -428,8 +426,7 @@
     Canvas.prototype.setFontSize = function( f ){
     
         this.context.fontSize = f;
-    };
-    
+    };   
     Canvas.prototype.getFontSize = function(){
     
         return this.context.fontSize;
@@ -438,8 +435,7 @@
     Canvas.prototype.setFontStyle = function( f ){
     
         this.context.fontStyle = f;
-    };
-    
+    };    
     Canvas.prototype.getFontStyle = function(){
     
         return this.context.fontStyle;
@@ -448,8 +444,7 @@
     Canvas.prototype.setFontWeight = function( f ){
     
         this.context.fontWeight = f;
-    };
-    
+    };   
     Canvas.prototype.getFontWeight = function(){
     
         return this.context.fontWeight;
@@ -458,8 +453,7 @@
     Canvas.prototype.setFontVariant = function( f ){
     
         this.context.fontVariant = f;
-    };
-    
+    };    
     Canvas.prototype.getFontVariant = function(){
     
         return this.context.fontVariant;

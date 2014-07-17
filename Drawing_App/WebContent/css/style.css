@@ -219,30 +219,47 @@ canvas{}
 #Canvas_Container{
 
 	position : relative;
-	/*top : 80px;
 	left : 50px;
+	pointer-events : none;
+	
+	/*top : 80px;
 	width : 100%;
 	bottom : 0px;
 	margin : auto;
 	border : 1px solid red;*/
 	/**/
-	pointer-events : none;
+	
 }
 
-#Canvas{
+#Canvas_Draw{
 	
-	/*top : -152px; height of Canvas Adorners*/
+	border : 2px solid red;
 	z-index : 0;	
 }
 
 #Canvas_Adorners{
 	
+	border : 2px solid green;
 	z-index : 1;
+}
+
+#Canvas_Selection{
+	
+	border : 2px solid blue;
+	z-index : 2;
+}
+
+#Canvas_Grid{
+	
+	border : 2px solid black;
+	z-index : -1;
 }
 
 .UI_Canvas{
 
-	position : relative;
+	position : absolute;
+	top : 0px;
+	left : 0px;
 	margin : 0%;
 
 	pointer-events : auto;
