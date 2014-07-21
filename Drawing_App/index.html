@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-	
+
 	<link rel="stylesheet" type="text/css" href="WebContent/css/style.css">
 
-	<script type="text/javascript" src="WebContent/js/helpers/managerbase.js"></script>
 	<script type="text/javascript" src="WebContent/js/helpers/moduleobjects.js"></script>
 	<script type="text/javascript" src="WebContent/js/helpers/utilities.js"></script>
 	<script type="text/javascript" src="WebContent/js/helpers/objectextension.js"></script>
 	<script type="text/javascript" src="WebContent/js/helpers/observer.js"></script>
-	
+
 	<script type="text/javascript" src="WebContent/js/main.js"></script>
 	<script type="text/javascript" src="WebContent/js/drawingapplication.js"></script>
-	
+
 	<script type="text/javascript" src="WebContent/js/geometry.js"></script>
 	<script type="text/javascript" src="WebContent/js/inputmanager.js"></script>
 	<script type="text/javascript" src="WebContent/js/uimanager.js"></script>
 	<script type="text/javascript" src="WebContent/js/mainmenu.js"></script>
 	<script type="text/javascript" src="WebContent/js/objectproperties.js"></script>
-	<script type="text/javascript" src="WebContent/js/canvasBase.js"></script>
-	<script type="text/javascript" src="WebContent/js/canvasAdorners.js"></script>
-	<script type="text/javascript" src="WebContent/js/canvasSelection.js"></script>
-	<script type="text/javascript" src="WebContent/js/canvasDraw.js"></script>
-	<script type="text/javascript" src="WebContent/js/canvasGrid.js"></script>
-	<script type="text/javascript" src="WebContent/js/canvasRulers.js"></script>
+	<script type="text/javascript" src="WebContent/js/canvasmanager.js"></script>
+	<script type="text/javascript" src="WebContent/js/canvasbase.js"></script>
+	<script type="text/javascript" src="WebContent/js/canvasadorners.js"></script>
+	<script type="text/javascript" src="WebContent/js/canvasselection.js"></script>
+	<script type="text/javascript" src="WebContent/js/canvasdraw.js"></script>
+	<script type="text/javascript" src="WebContent/js/canvasgrid.js"></script>
+	<script type="text/javascript" src="WebContent/js/canvasrulers.js"></script>
 	<script type="text/javascript" src="WebContent/js/toolbar.js"></script>
-	
-	
-	
-	
+
+
+
+
 	<title>Drawing Application</title>
 </head>
 <body>
@@ -45,42 +45,42 @@
 			</ol>
 		</div>
 	</div>
-	
+
 	<div id="ObjectProperties" class="UI_ObjectProperties">
 		<hgroup>Object Properties</hgroup>
 		<div id="ObjectProperties_Container" ></div>
 	</div>
-	
+
 	<div id="ToolBar" class="UI_ToolBar" >
-	
+
 		<ol id="ToolBarItems" class="UI_ToolBarItems" >
 			<ol id="ToolBarItems_Select" class="ToolBarItems_Section">
-				<li id="ToolBarItem_0" class="UI_ToolBarItem"><div><img alt="Select Object" src="WebContent/images/ToolBarItems_Icons.png"></div><input type="radio" name="ToolBarItem" id="selectObject"></li>
-				<li id="ToolBarItem_1" class="UI_ToolBarItem"><div><img alt="Select Element" src="WebContent/images/ToolBarItems_Icons.png"></div><input type="radio" name="ToolBarItem" id="selectElement"></li>
+				<li id="ToolBarItem_0" class="UI_ToolBarItem"><div><img alt="Select Object" src="WebContent/images/ToolBarItems_Icons.png" width="200" height="450"></div><input type="radio" name="ToolBarItem" id="selectObject"></li>
+				<li id="ToolBarItem_1" class="UI_ToolBarItem"><div><img alt="Select Element" src="WebContent/images/ToolBarItems_Icons.png" width="200" height="450"></div><input type="radio" name="ToolBarItem" id="selectElement"></li>
 			</ol>
-			<!--<hr>-->
+
 			<ol id="ToolBarItems_Create" class="ToolBarItems_Section">
-				<li id="ToolBarItem_2" class="UI_ToolBarItem"><div><img alt="Create Rectangle" src="WebContent/images/ToolBarItems_Icons.png"></div><input type="radio" name="ToolBarItem" id="createRectangle"></li>
-				<li id="ToolBarItem_3" class="UI_ToolBarItem"><div><img alt="Create Ellipse" src="WebContent/images/ToolBarItems_Icons.png"></div><input type="radio" name="ToolBarItem" id="createEllipse"></li>
-				<li id="ToolBarItem_4" class="UI_ToolBarItem"><div><img alt="Create Line" src="WebContent/images/ToolBarItems_Icons.png"></div><input type="radio" name="ToolBarItem" id="createLine"></li>	
-				<li id="ToolBarItem_5" class="UI_ToolBarItem"><div><img alt="Create Curve" src="WebContent/images/ToolBarItems_Icons.png"></div><input type="radio" name="ToolBarItem" id="createCurve"></li>	
-				<li id="ToolBarItem_6" class="UI_ToolBarItem"><div><img alt="Create Text" src="WebContent/images/ToolBarItems_Icons.png"></div><input type="radio" name="ToolBarItem" id="createText"></li>			
+				<li id="ToolBarItem_2" class="UI_ToolBarItem"><div><img alt="Create Rectangle" src="WebContent/images/ToolBarItems_Icons.png" width="200" height="450"></div><input type="radio" name="ToolBarItem" id="createRectangle"></li>
+				<li id="ToolBarItem_3" class="UI_ToolBarItem"><div><img alt="Create Ellipse" src="WebContent/images/ToolBarItems_Icons.png" width="200" height="450"></div><input type="radio" name="ToolBarItem" id="createEllipse"></li>
+				<li id="ToolBarItem_4" class="UI_ToolBarItem"><div><img alt="Create Line" src="WebContent/images/ToolBarItems_Icons.png" width="200" height="450"></div><input type="radio" name="ToolBarItem" id="createLine"></li>
+				<li id="ToolBarItem_5" class="UI_ToolBarItem"><div><img alt="Create Curve" src="WebContent/images/ToolBarItems_Icons.png" width="200" height="450"></div><input type="radio" name="ToolBarItem" id="createCurve"></li>
+				<li id="ToolBarItem_6" class="UI_ToolBarItem"><div><img alt="Create Text" src="WebContent/images/ToolBarItems_Icons.png" width="200" height="450"></div><input type="radio" name="ToolBarItem" id="createText"></li>
 			</ol>
-			<!--<hr>-->
+
 			<ol id="ToolBarItems_Canvas" class="ToolBarItems_Section">
-				<li id="ToolBarItem_7" class="UI_ToolBarItem"><div><img alt="Canvas Zoom" src="WebContent/images/ToolBarItems_Icons.png"></div><input type="radio" name="ToolBarItem" id="canvasZoom"></li>
-				<li id="ToolBarItem_8" class="UI_ToolBarItem"><div><img alt="Canvas Pan" src="WebContent/images/ToolBarItems_Icons.png"></div><input type="radio" name="ToolBarItem" id="canvasPan"></li>
+				<li id="ToolBarItem_7" class="UI_ToolBarItem"><div><img alt="Canvas Zoom" src="WebContent/images/ToolBarItems_Icons.png" width="200" height="450"></div><input type="radio" name="ToolBarItem" id="canvasZoom"></li>
+				<li id="ToolBarItem_8" class="UI_ToolBarItem"><div><img alt="Canvas Pan" src="WebContent/images/ToolBarItems_Icons.png" width="200" height="450"></div><input type="radio" name="ToolBarItem" id="canvasPan"></li>
 			</ol>
-						
-		</ol>		
+
+		</ol>
 	</div>
-	
+
 	<div id="Canvas_Container">
 		<canvas id="Canvas_Selection" class="UI_Canvas"></canvas>
 		<canvas id="Canvas_Adorners" class="UI_Canvas"></canvas>
 		<canvas id="Canvas_Draw" class="UI_Canvas"></canvas>
 		<canvas id="Canvas_Grid" class="UI_Canvas"></canvas>
 	</div>
-	
+
 </body>
 </html>

@@ -4,7 +4,7 @@
 
 
 *{
-	
+
 	outline : none;
 	text-decoration : none;
 }
@@ -16,9 +16,9 @@ body{
 	padding : 0px;
 	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size : 8pt;
-	
+
 	overflow : hidden; /*Stops scrolling*/
-	
+
 	-webkit-user-select : none;
 	-khtml-user-select : none;
 	-moz-user-select : none;
@@ -49,19 +49,19 @@ div{}
 }
 
 .UI_MainMenu div{
-	
+
 	margin : 0px;
 	padding : 1.75px;
-	float : left;	
+	float : left;
 }
 
 .UI_MainMenu_Options{
-	
+
 	position : absolute;
 }
 
 #MainMenu_Container{
-	
+
 	visibility : hidden;
 }
 
@@ -85,7 +85,7 @@ div{}
 }
 
 .UI_ObjectProperties div{
-	
+
 	margin : 0px;
 	padding : 1.75px;
 	float : left;
@@ -123,15 +123,15 @@ UI TOOLBAR
 div{}
 
 .UI_ToolBar{
-	
+
 	/*
-	 * 
+	 *
 	position : absolute;
 	top : 92px;
 	left : 0px;
 	 */
-	
-	
+
+
 	float : left;
 	width : 50px;
 	padding : 0px;
@@ -144,14 +144,6 @@ div{}
 	list-style-type : none;
 	padding : inherit;
 	margin : inherit;
-}
-
-hr{
-
-	border-top : 0px;
-	border-right : 0px;
-	border-bottom : solid black 1px;
-	border-left : 0px;
 }
 
 /*
@@ -186,9 +178,9 @@ ol:last-child{
 	height : inherit;
 	margin : auto;
 	padding : inherit;
-	color : white;	
+	color : white;
 	border : 0px;
-	
+
 	-webkit-appearance : none;
 }
 
@@ -221,36 +213,38 @@ canvas{}
 	position : relative;
 	left : 50px;
 	pointer-events : none;
-	
+
 	/*top : 80px;
 	width : 100%;
 	bottom : 0px;
 	margin : auto;
 	border : 1px solid red;*/
 	/**/
-	
+
 }
 
 #Canvas_Draw{
-	
+
 	border : 2px solid red;
-	z-index : 0;	
+	z-index : 0;
 }
 
 #Canvas_Adorners{
-	
+
+	left : 304px;
 	border : 2px solid green;
 	z-index : 1;
 }
 
 #Canvas_Selection{
-	
+
+	left : 608px;
 	border : 2px solid blue;
 	z-index : 2;
 }
 
 #Canvas_Grid{
-	
+
 	border : 2px solid black;
 	z-index : -1;
 }

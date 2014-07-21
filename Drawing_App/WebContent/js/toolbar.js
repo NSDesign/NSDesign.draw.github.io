@@ -172,7 +172,7 @@ ToolBar.prototype.initialise = function() {
                     label : "y",
                     control : "input",
                     type : "number",
-                    value : 100,
+                    value : 30,
                     extend : inputNumber,
                     bindElement : this.uiManager.getUIElement("canvas"),
                     bindProperty : "setY",

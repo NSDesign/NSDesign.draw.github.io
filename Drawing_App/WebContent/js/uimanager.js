@@ -115,6 +115,12 @@ var UIManager = (function() {
 
 			return uiElements[ element ];
 		},
+
+//FIXME		
+		getUIElements : function(){
+            
+            return uiElements;
+        },
 		
 		//UIShapes
 		getUIShape : function( shape ){
