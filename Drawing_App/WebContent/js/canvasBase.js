@@ -4,15 +4,15 @@
 
 
 function CanvasBase( id, element, elementName, displayName, objectName, uiManager ) {
-        
+
     Module_Base.getModule().call( this, id, element, elementName, displayName, objectName, uiManager );
-    
-      
+
+
     this.canvas = this.element;
-    this.context = this.canvas.getContext( "2d" );      
-    
+    this.context = this.canvas.getContext( "2d" );
+
     this.objectPropertiesDefault = {
-                    
+
                     x : {
                         label : "x",
                         control : "input",
@@ -23,7 +23,7 @@ function CanvasBase( id, element, elementName, displayName, objectName, uiManage
                         bindProperty : "left",
                         isPixel : true
                     },
-                    
+
                     y : {
                         label : "y",
                         control : "input",
@@ -34,7 +34,7 @@ function CanvasBase( id, element, elementName, displayName, objectName, uiManage
                         bindProperty : "top",
                         isPixel : true
                     },
-                    
+
                     width : {
                         label : "width",
                         control : "input",
@@ -44,7 +44,7 @@ function CanvasBase( id, element, elementName, displayName, objectName, uiManage
                         bindElement : Canvas_Container,
                         bindProperty : "width"
                     },
-                    
+
                     height : {
                         label : "height",
                         control : "input",
@@ -54,7 +54,7 @@ function CanvasBase( id, element, elementName, displayName, objectName, uiManage
                         bindElement : Canvas_Container,
                         bindProperty : "height"
                     },
-                    
+
                     showGrid : {
                         label : "show grid",
                         control : "input",
@@ -65,7 +65,7 @@ function CanvasBase( id, element, elementName, displayName, objectName, uiManage
                         bindProperty : "setGridVisibility",
                         isFunction : true
                     },
-                    
+
                     gridSize : {
                         label : "grid size",
                         control : "input",
@@ -79,7 +79,7 @@ function CanvasBase( id, element, elementName, displayName, objectName, uiManage
                         bindProperty : "setGridSize",
                         isFunction : true
                     },
-                
+
                     gridSnap : {
                         label : "grid snap",
                         control : "input",
@@ -92,9 +92,9 @@ function CanvasBase( id, element, elementName, displayName, objectName, uiManage
                     }
                 };
     this.element.bind = this; //Required for 'this' in event handler
-            
+
     this.gridSize;
-    this.centroid;      
+    this.centroid;
 };
 
 CanvasBase.prototype = Object.create( Module_Base.getModule().prototype );
@@ -103,38 +103,57 @@ CanvasBase.prototype = Object.create( Module_Base.getModule().prototype );
 
 
 CanvasBase.prototype.getCentroid = function(){
-        
+
     return this.centroid = {
-    
+
         x : this.element.width / 2,
         y : this.element.height / 2
     };
 };
 
-   
+
 CanvasBase.prototype.setFillStyle = function( c ){
 
-        this.context.fillStyle = c;
-    };  
+    this.context.fillStyle = c;
+};
 CanvasBase.prototype.getFillStyle = function(){
 
-        return this.context.fillStyle;
-    };
-    
+    return this.context.fillStyle;
+};
+
 CanvasBase.prototype.setStrokeStyle = function( c ){
 
-        this.context.strokeStyle = c;
-    };  
+    this.context.strokeStyle = c;
+};
 CanvasBase.prototype.getStrokeStyle = function(){
 
-        return this.context.strokeStyle;
-    };
-    
+    return this.context.strokeStyle;
+};
+
 CanvasBase.prototype.setLineWidth = function( w ){
-    
-        this.context.lineWidth = w;
-    };  
+
+    this.context.lineWidth = w;
+};
 CanvasBase.prototype.getLineWidth = function(){
-    
-        return Number( this.context.lineWidth );
-    };
+
+    return Number( this.context.lineWidth );
+};
+
+CanvasBase.prototype.setCanvasWidth = function( w ){
+
+    this.canvas.width = w;
+};
+CanvasBase.prototype.getCanvasWidth = function(){
+
+    return Number( this.canvas.width );
+};
+
+CanvasBase.prototype.setCanvasHeight = function( h ){
+
+    this.canvas.height = h;
+};
+CanvasBase.prototype.getCanvasHeight = function(){
+
+    return Number( this.canvas.height );
+};
+
