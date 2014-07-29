@@ -5,39 +5,104 @@
 
 var Geometry = {
 
+    GeoBase : function( id, x, y, pointA, pointB, colour ){
+
+        this.id = id;
+        this.x = x;
+        this.y = y;
+        this.pointA = pointA;
+        this.pointB = pointB;
+        this.colour = colour;
+
+        this.randomColour = Geometry.Colour.RGBAtoRGBAString( Math.random() * 255, Math.random() * 255, Math.random() * 255, 255 );
+        this.isSelected  = false;
+
+    },
+
 	Point : function( id, x, y, colour ){
 
-		this.id = id;
-		this.x = x;
-		this.y = y;
-		this.colour = colour;
-		this.randomColour = Geometry.Colour.RGBColour( Math.random() * 255, Math.random() * 255, Math.random() * 255 );
+        //Geometry.GeoBase.call( this, id, x, y, null, null, colour );
+        this.id = id;
+        this.x = x;
+        this.y = y;
+        this.colour = colour;
 
-		return point = {
+        this.randomColour = Geometry.Colour.RGBAtoRGBAString( Math.random() * 255, Math.random() * 255, Math.random() * 255, 255 );
+        this.isSelected  = false;
+        this.selectionOffset = { x : 0, y : 0 };
 
-			getID : this.id,
-			getX : this.x,
-			getY : this.y,
-			getColour : this.colour,
-			getRandomColour : this.randomColour,
-		};
+		//return {
+
+			this.getID = function(){
+
+			    return this.id;
+			};
+
+			this.getX = function(){
+
+                return this.x;
+            };
+
+			this.setX = function( x ){
+
+			    this.x = x;
+			};
+
+			this.getY = function(){
+
+                return this.y;
+            };
+
+			this.setY = function( y ){
+
+                this.y = y;
+            };
+
+            this.getSelectionOffset = function(){
+
+                return this.selectionOffset;
+            };
+
+            this.setSelectionOffset = function( x, y ){
+
+                this.selectionOffset.x = x;
+                this.selectionOffset.y = y;
+            };
+
+			this.getColour = function(){
+
+                return this.colour;
+            };
+
+			this.getRandomColour = function(){
+
+                return this.randomColour;
+            };
+
+            this.setIsSelected = function( s ){
+
+                this.isSelected = s;
+            };
+
+			this.getIsSelected = function(){
+
+                return this.isSelected;
+            };
+		//};
 	},
 
 	Segment : function( id, pointA, pointB, colour ){
 
-		this.id = id;
-		this.pointA = pointA;
-		this.pointB = pointB;
-		this.colour = colour;
-		this.randomColour = Geometry.Colour.RGBColour( Math.random() * 255, Math.random() * 255, Math.random() * 255 );
+        Geometry.GeoBase.call( this, id, null, null, pointA, pointB, colour );
 
-		return segment = {
+		return {
 
 			getID : this.id,
 			getPointA : this.pointA,
 			getPointB : this.pointB,
 			getColour : this.colour,
 			getRandomColour : this.randomColour,
+			getIsSelected : this.isSelected,
 		};
 	},
 
@@ -48,11 +113,27 @@ var Geometry = {
 			var alias = Geometry.Shapes.BaseShape;
 
 			this.x = Number( x );
-			alias.prototype.setX = function( x ){ this.x = Number( x ); };
+			alias.prototype.setX = function( x ){
+
+			    this.x = x - this.selectionOffset.x;
+
+			    for( point in this.geometry.points ){
+
+			        this.geometry.points[ point ].setX( x - this.geometry.points[ point ].getSelectionOffset().x );
+			    };
+			};
 			alias.prototype.getX = function(){ return this.x; };
 
 			this.y = Number( y );
-			alias.prototype.setY = function( y ){ this.y = Number( y ); };
+			alias.prototype.setY = function( y ){
+
+			    this.y = y - this.selectionOffset.y;
+
+			    for( point in this.geometry.points ){
+
+                    this.geometry.points[ point ].setY( y - this.geometry.points[ point ].getSelectionOffset().y );
+                };
+			};
 			alias.prototype.getY = function(){ return this.y; };
 
 			this.width = Number( width );
@@ -63,7 +144,7 @@ var Geometry = {
 			alias.prototype.setHeight = function( height ){ this.height = Number( height ); };
 			alias.prototype.getHeight = function(){ return this.height; };
 
-			this.colourRandom = Geometry.Colour.RGBColour( Math.random() * 255, Math.random() * 255, Math.random() * 255 );
+			this.colourRandom = Geometry.Colour.RGBAtoRGBAString( Math.random() * 255, Math.random() * 255, Math.random() * 255, 255 );
             alias.prototype.setColourRandom = function( colourRandom ){ this.colourRandom = colourRandom; };
             alias.prototype.getColourRandom = function(){ return this.colourRandom; };
 
@@ -82,6 +163,10 @@ var Geometry = {
 			this.fromCenter = fromCenter;
 			alias.prototype.setFromCenter = function( fromCenter ){ this.fromCenter = fromCenter; };
 			alias.prototype.getFromCenter = function(){ return this.fromCenter;};
+
+            this.id = undefined;
+            alias.prototype.setID = function( id ){ this.id = id; };
+            alias.prototype.getID = function(){ return this.idName + "_" + this.idNum; };
 
 			this.idName = undefined;
 			alias.prototype.setIDName = function( idName ){ this.idName = idName; };
@@ -112,9 +197,9 @@ var Geometry = {
 			};
 			alias.prototype.getGeometrySegments = function(){ return this.geometry.segments; };
 
-			alias.prototype.RenderGeometry = function(){ ; };
+			alias.prototype.RenderGeometry = function(){};
 
-			this.adornerColour = "cyan";
+			this.adornerColour = undefined;
             alias.prototype.setAdornerColour = function( adornerColour ){ this.adornerColour = adornerColour; };
             alias.prototype.getAdornerColour = function(){ return this.adornerColour; };
 
@@ -124,10 +209,17 @@ var Geometry = {
 
 			alias.prototype.RenderAdorners = function(){ ; };
 
+            this.zDepth = 0;
+            alias.prototype.setZDepth = function( zDepth ){ this.zDepth = zDepth; };
+            alias.prototype.getZDepth = function(){ return this.zDepth; };
 
-			this.selection  = undefined;
-			alias.prototype.setSelection = function( selection ){ this.selection = selection; };
-			alias.prototype.getSelection = function(){ return this.selection; };
+            this.isActive  = false;
+            alias.prototype.setIsActive = function( isActive ){ this.isActive = isActive; };
+            alias.prototype.getIsActive = function(){ return this.isActive; };
+
+            this.isSelected  = false;
+			alias.prototype.setIsSelected = function( isSelected ){ this.isSelected = isSelected; };
+			alias.prototype.getIsSelected = function(){ return this.isSelected; };
 
 
 			alias.prototype.editAddPoints = function( points ){
@@ -165,6 +257,7 @@ var Geometry = {
 			//ID's
 			this.setIDName( "Rectangle" );
 			this.setIDNum( 0 );
+			this.setID( this.getID() );
 
 			//Points
 			this.editAddPoints(
@@ -187,32 +280,41 @@ var Geometry = {
 				}
 			);
 
+            alias.prototype.CreateGeometry = function( canvasContext ){
 
-			alias.prototype.RenderGeometry = function( canvas, canvasContext, selection ){
+                return {
+
+                    beginPath : canvasContext.beginPath(),
+
+                    moveTo : canvasContext.moveTo( this.getGeometrySegments().segment0.getPointA.getX(), this.getGeometrySegments().segment0.getPointA.getY() ),
+                    lineTo : canvasContext.lineTo( this.getGeometrySegments().segment0.getPointB.getX(), this.getGeometrySegments().segment0.getPointB.getY() ),
+                    lineTo : canvasContext.lineTo( this.getGeometrySegments().segment1.getPointB.getX(), this.getGeometrySegments().segment1.getPointB.getY() ),
+                    lineTo : canvasContext.lineTo( this.getGeometrySegments().segment2.getPointB.getX(), this.getGeometrySegments().segment2.getPointB.getY() ),
+
+                    closePath : canvasContext.closePath()
+                };
+            };
+
+			alias.prototype.RenderGeometry = function( canvas, canvasContext ){
 
 				//Shape
 
-				switch( selection ){
-
-				    case true:
-
-				        canvas.setFillStyle( this.getColourRandom() );
-                        canvas.setStrokeStyle( this.getColourRandom() );
-				    break;
-
-				    case false:
-
-				        canvas.setFillStyle( this.getFillColour() );
-                        canvas.setStrokeStyle( this.getStrokeColour() );
-				    break;
-				}
-
+                canvas.setFillStyle( this.getFillColour() );
+                canvas.setStrokeStyle( this.getStrokeColour() );
 				canvas.setLineWidth( this.getStrokeWeight() );
 
-				canvasContext.beginPath();
-				canvasContext.rect( this.getX(), this.getY(), this.getWidth(), this.getHeight() );
+				this.CreateGeometry( canvasContext );
+
 				canvasContext.fill();
 				canvasContext.stroke();
+
+
+                canvasContext.fillStyle =  "black";
+                canvasContext.font = "16px Arial";
+				canvasContext.fillText( this.getIsSelected() , this.getX() + 5, this.getY() + 20 );
+				canvasContext.fillText( this.getID() , this.getX() + 5, this.getY() + 40 );
+				canvasContext.fillText( this.getIsActive() , this.getX() + 110, this.getY() + 20 );
+				canvasContext.fillText( this.getZDepth() , this.getX() + 110, this.getY() + 40 );
 			};
 
 			alias.prototype.RenderAdorners = function( canvas, canvasContext, selection ){
@@ -222,33 +324,29 @@ var Geometry = {
 
 				canvas.setLineWidth( 2 );
 
-				canvas.setStrokeStyle( this.getGeometrySegments().segment0[ Geometry.Colour.ColouriseMethod( selection ) ] );
+				canvas.setStrokeStyle( this.getGeometrySegments().segment0.getColour );
 				canvasContext.beginPath();
-				canvasContext.moveTo( this.getGeometrySegments().segment0.getPointA.getX, this.getGeometrySegments().segment0.getPointA.getY );
-				canvasContext.lineTo( this.getGeometrySegments().segment0.getPointB.getX, this.getGeometrySegments().segment0.getPointB.getY );
+				canvasContext.moveTo( this.getGeometrySegments().segment0.getPointA.getX(), this.getGeometrySegments().segment0.getPointA.getY() );
+				canvasContext.lineTo( this.getGeometrySegments().segment0.getPointB.getX(), this.getGeometrySegments().segment0.getPointB.getY() );
 				canvasContext.stroke();
-				canvasContext.closePath();
 
-				canvas.setStrokeStyle( this.getGeometrySegments().segment1[ Geometry.Colour.ColouriseMethod( selection ) ] );
+				canvas.setStrokeStyle( this.getGeometrySegments().segment1.getColour );
 				canvasContext.beginPath();
-				canvasContext.moveTo( this.getGeometrySegments().segment1.getPointA.getX, this.getGeometrySegments().segment1.getPointA.getY );
-				canvasContext.lineTo( this.getGeometrySegments().segment1.getPointB.getX, this.getGeometrySegments().segment1.getPointB.getY );
+				canvasContext.moveTo( this.getGeometrySegments().segment1.getPointA.getX(), this.getGeometrySegments().segment1.getPointA.getY() );
+				canvasContext.lineTo( this.getGeometrySegments().segment1.getPointB.getX(), this.getGeometrySegments().segment1.getPointB.getY() );
 				canvasContext.stroke();
-				canvasContext.closePath();
 
-				canvas.setStrokeStyle( this.getGeometrySegments().segment2[ Geometry.Colour.ColouriseMethod( selection ) ] );
+				canvas.setStrokeStyle( this.getGeometrySegments().segment2.getColour );
 				canvasContext.beginPath();
-				canvasContext.moveTo( this.getGeometrySegments().segment2.getPointA.getX, this.getGeometrySegments().segment2.getPointA.getY );
-				canvasContext.lineTo( this.getGeometrySegments().segment2.getPointB.getX, this.getGeometrySegments().segment2.getPointB.getY );
+				canvasContext.moveTo( this.getGeometrySegments().segment2.getPointA.getX(), this.getGeometrySegments().segment2.getPointA.getY() );
+				canvasContext.lineTo( this.getGeometrySegments().segment2.getPointB.getX(), this.getGeometrySegments().segment2.getPointB.getY() );
 				canvasContext.stroke();
-				canvasContext.closePath();
 
-				canvas.setStrokeStyle( this.getGeometrySegments().segment3[ Geometry.Colour.ColouriseMethod( selection ) ] );
+				canvas.setStrokeStyle( this.getGeometrySegments().segment3.getColour );
 				canvasContext.beginPath();
-				canvasContext.moveTo( this.getGeometrySegments().segment3.getPointA.getX, this.getGeometrySegments().segment3.getPointA.getY );
-				canvasContext.lineTo( this.getGeometrySegments().segment3.getPointB.getX, this.getGeometrySegments().segment3.getPointB.getY );
+				canvasContext.moveTo( this.getGeometrySegments().segment3.getPointA.getX(), this.getGeometrySegments().segment3.getPointA.getY() );
+				canvasContext.lineTo( this.getGeometrySegments().segment3.getPointB.getX(), this.getGeometrySegments().segment3.getPointB.getY() );
 				canvasContext.stroke();
-				canvasContext.closePath();
 
 				//Adorners
 				//Points
@@ -256,29 +354,25 @@ var Geometry = {
 				var start = 0;
 				var end = 2 * Math.PI;
 
-				canvas.setFillStyle( this.getGeometryPoints().point0[ Geometry.Colour.ColouriseMethod( selection ) ] );
+				canvas.setFillStyle( this.getGeometryPoints().point0.getColour() );
 				canvasContext.beginPath();
-				canvasContext.arc( this.getGeometryPoints().point0.getX, this.getGeometryPoints().point0.getY, radius, start, end );
+				canvasContext.arc( this.getGeometryPoints().point0.getX(), this.getGeometryPoints().point0.getY(), radius, start, end );
 				canvasContext.fill();
-				canvasContext.closePath();
 
-				canvas.setFillStyle( this.getGeometryPoints().point1[ Geometry.Colour.ColouriseMethod( selection ) ] );
+				canvas.setFillStyle( this.getGeometryPoints().point1.getColour() );
 				canvasContext.beginPath();
-				canvasContext.arc( this.getGeometryPoints().point1.getX, this.getGeometryPoints().point1.getY, radius, start, end );
+				canvasContext.arc( this.getGeometryPoints().point1.getX(), this.getGeometryPoints().point1.getY(), radius, start, end );
 				canvasContext.fill();
-				canvasContext.closePath();
 
-				canvas.setFillStyle( this.getGeometryPoints().point2[ Geometry.Colour.ColouriseMethod( selection ) ] );
+				canvas.setFillStyle( this.getGeometryPoints().point2.getColour() );
 				canvasContext.beginPath();
-				canvasContext.arc( this.getGeometryPoints().point2.getX, this.getGeometryPoints().point2.getY, radius, start, end );
+				canvasContext.arc( this.getGeometryPoints().point2.getX(), this.getGeometryPoints().point2.getY(), radius, start, end );
 				canvasContext.fill();
-				canvasContext.closePath();
 
-				canvas.setFillStyle( this.getGeometryPoints().point3[ Geometry.Colour.ColouriseMethod( selection ) ] );
+				canvas.setFillStyle( this.getGeometryPoints().point3.getColour() );
 				canvasContext.beginPath();
-				canvasContext.arc( this.getGeometryPoints().point3.getX, this.getGeometryPoints().point3.getY, radius, start, end );
+				canvasContext.arc( this.getGeometryPoints().point3.getX(), this.getGeometryPoints().point3.getY(), radius, start, end );
 				canvasContext.fill();
-				canvasContext.closePath();
 			};
 		},
 
@@ -316,29 +410,84 @@ var Geometry = {
             return selection ? "getRandomColour" : "getColour";
         },
 
-        RGBColour : function( r, g, b ){
+        RGBAtoRGBAString : function( r, g, b, a ){
 
-            r = Math.floor( r );
-            g = Math.floor( g );
-            b = Math.floor( b );
+            var r = Math.floor( r );
+            var g = Math.floor( g );
+            var b = Math.floor( b );
+            var a = Math.floor( a );
 
-            return [ "rgb(", r, ",", g, ",", b, ")" ].join( "" ); //"rgb(" + r + "," + g + "," + b + ")";
+            return [ "rgba(", r, ",", g, ",", b, ",", a, ")" ].join( "" );
+        },
+
+        RGBAStringtoRGBA : function( rgba ){
+
+            var start = rgba.indexOf( "(" );
+            var end = rgba.lastIndexOf( ")" );
+            var rgbExtract = rgba.substring( start + 1, end );
+            var rgbArray = rgbExtract.split( "," );
+
+            return {
+
+                r : Number( rgbArray[ 0 ] ),
+                g : Number( rgbArray[ 1 ] ),
+                b : Number( rgbArray[ 2 ] ),
+                a : Number( rgbArray[ 3 ] ),
+            };
         },
 
         GetPixelColour : function( context, mousePos ){
 
-            var imgData = context.getImageData( mousePos.x, mousePos.y, 1, 1 ).data;
+            var imgData = context.getImageData( Math.floor( mousePos.x ), Math.floor( mousePos.y ), 1, 1 ).data;
 
             return {
 
-                imageData : imgData,
                 r : imgData[ 0 ],
                 g : imgData[ 1 ],
                 b : imgData[ 2 ],
                 a : imgData[ 3 ],
             };
         },
-	}
+
+        CompareRGBAColours : function( colourA, colourB ){
+
+            //Get the colour objects component keys
+            var cA = Object.keys( colourA );
+            var cB = Object.keys( colourB );
+
+            //Test colour objects has the same number of component keys
+            if( cA.length === cB.length ){
+
+            //Test colour objects component keys are the same
+                var inc = 0;
+                cA.forEach( function( cB ){
+
+                    if( this[ inc ] !== cB )
+                        return;
+
+                    inc += 1;
+                }, cA );
+            }
+
+            //Test colour objects component values are the same
+            for( component in colourA, colourB){
+
+                if( colourA[ component ] !== colourB[ component ] ){
+
+                   return false;
+                }
+            }
+
+            return true;
+        },
+	},
+
+	Selection : {
+
+
+	},
+
+
 };
 
 

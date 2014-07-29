@@ -173,15 +173,16 @@ ol:last-child{
 .UI_ToolBarItem input[ type="radio" ]{
 
 	position : relative;
-	top : -50px;
-	width : inherit;
-	height : inherit;
+	top : -65px;
+	left : -15px;
+	width : 80px;
+	height : 80px;
 	margin : auto;
-	padding : inherit;
-	color : white;
-	border : 0px;
+	opacity : 0;
 
+	appearance : none;
 	-webkit-appearance : none;
+	-moz-appearance : none;
 }
 
 .UI_ToolBarItem div{
@@ -234,14 +235,17 @@ canvas{}
 	left : 304px;
 	border : 2px solid green;
 	z-index : 1;
+	pointer-events : none;
 }
 
+/*
 #Canvas_Selection{
 
 	left : 608px;
 	border : 2px solid blue;
 	z-index : 2;
 }
+*/
 
 #Canvas_Grid{
 

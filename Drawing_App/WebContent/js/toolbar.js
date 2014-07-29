@@ -142,7 +142,6 @@ ToolBar.prototype.initialise = function() {
             shortCut : "R",
             state : "unselected",
             mode : "create",
-            isPublisher : true,
 
             objectPropertiesDefault : {
 
@@ -262,7 +261,6 @@ ToolBar.prototype.initialise = function() {
             shortCut : "E",
             state : "unselected",
             mode : "create",
-            isPublisher : true,
 
             objectPropertiesDefault : {
 
@@ -410,10 +408,9 @@ ToolBar.prototype.initialise = function() {
             shortCut : "L",
             state : "unselected",
             mode : "create",
-            isPublisher : true,
 
             objectPropertiesDefault : {
-                
+
                 x : {
                     label : "x",
                     control : "input",
@@ -518,10 +515,9 @@ ToolBar.prototype.initialise = function() {
             shortCut : "T",
             state : "unselected",
             mode : "create",
-            isPublisher : true,
 
             objectPropertiesDefault : {
-                
+
                 x : {
                     label : "x",
                     control : "input",
@@ -626,7 +622,6 @@ ToolBar.prototype.initialise = function() {
             shortCut : "Y",
             state : "unselected",
             mode : "create",
-            isPublisher : true,
 
             objectPropertiesDefault : {
 
@@ -651,7 +646,7 @@ ToolBar.prototype.initialise = function() {
                     bindProperty : "setFontSize",
                     isFunction : true
                 },
-                
+
                 fontStyle : {
                     label : "font Style",
                     control : "input",
@@ -662,7 +657,7 @@ ToolBar.prototype.initialise = function() {
                     bindProperty : "setFontStyle",
                     isFunction : true
                 },
-                
+
                 fontVariant : {
                     label : "font Variant",
                     control : "input",
@@ -673,7 +668,7 @@ ToolBar.prototype.initialise = function() {
                     bindProperty : "setFontVariant",
                     isFunction : true
                 },
-                
+
                 fontWeight : {
                     label : "font Weight",
                     control : "input",
@@ -728,7 +723,7 @@ ToolBar.prototype.initialise = function() {
                     bindProperty : "setHeight",
                     isFunction : true
                 },
-                
+
                 fillStyle : {
                     label : "fill Style",
                     control : "input",
@@ -739,7 +734,7 @@ ToolBar.prototype.initialise = function() {
                     bindProperty : "setFillStyle",
                     isFunction : true
                 },
-                
+
                 fillColour : {
                     label : "fill Colour",
                     control : "input",
@@ -750,7 +745,7 @@ ToolBar.prototype.initialise = function() {
                     bindProperty : "setFillStyle",
                     isFunction : true
                 },
-                
+
                 strokeStyle : {
                     label : "stroke Style",
                     control : "input",
@@ -761,7 +756,7 @@ ToolBar.prototype.initialise = function() {
                     bindProperty : "setStrokeStyle",
                     isFunction : true
                 },
-                
+
                 strokeColour : {
                     label : "stroke Colour",
                     control : "input",
@@ -933,10 +928,10 @@ ToolBarItem.prototype.initialise = function(toolBarItem, toolBarItems) {
 
     this.setNormalState();
 
-    //Check if toolBarItem is a publisher? - 
-    //Has been determined it is, if it's objectPropertiesDefault{ properties } apply to the canvas.context 
+    //Check if toolBarItem is a publisher? -
+    //Has been determined it is, if it's objectPropertiesDefault{ properties } apply to the canvas.context
     //e.g fillColour, strokeWeight etc
-    
+
 };
 
 ToolBarItem.prototype.setNormalState = function() {
