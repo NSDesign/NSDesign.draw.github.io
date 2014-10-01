@@ -43,6 +43,9 @@ var InputMonitor = {
 
             getPosition : function( event, scope ) {
 
+                var event = event || new MouseEvent( "click" );
+                var scope = scope || "local";
+
                 switch( scope ){
 
                     case "local" :

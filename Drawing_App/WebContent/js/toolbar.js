@@ -75,7 +75,7 @@ ToolBar.prototype.initialise = function() {
             shortName : "Sel Ele",
             shortCut : "W",
             state : "unselected",
-            mode : "select",
+            mode : "selectElement",
 
             objectPropertiesDefault : {
 
@@ -204,7 +204,7 @@ ToolBar.prototype.initialise = function() {
                     label : "fill Colour",
                     control : "input",
                     type : "color",
-                    value : "#FF0000",
+                    value : "rgba( 255, 255, 255, 1 )",
                     extend : colourSelect,
                     bindElement : this.uiManager.getUIElement("canvas"),
                     bindProperty : "setFillStyle",
@@ -215,7 +215,7 @@ ToolBar.prototype.initialise = function() {
                     label : "stroke Colour",
                     control : "input",
                     type : "color",
-                    value : "#0000FF",
+                    value : "#000000",
                     extend : colourSelect,
                     bindElement : this.uiManager.getUIElement("canvas"),
                     bindProperty : "setStrokeStyle",
@@ -959,7 +959,8 @@ ToolBarItem.prototype.setIconPosition = function(iconState) {
 
 ToolBarItem.prototype.createShape = function(o) {
 
-    this.uiManager.getUIElement( "canvasDraw" )[ this.element.id ](o);
+    //this.uiManager.getUIElement( "canvasDraw" )[ this.element.id ](o);
+    //console.log( this.uiManager.getUIElement( "canvasDraw" )[ this.element.id ] );
 };
 
 ToolBarItem.prototype.setUIMode = function(e) {
@@ -996,6 +997,6 @@ ToolBarItem.prototype.clickEvent = function(e) {
 
 ToolBarItem.prototype.doubleClickEvent = function(e) {
 
-    this.bind.createShape(this.bind.objectPropertiesDefault);
+    //this.bind.createShape(this.bind.objectPropertiesDefault);
 };
 

@@ -10,12 +10,19 @@
 var UIManager = (function() {
 
 	this.objectPropertiesDefault = {};
+
 	this.currentUIContext = undefined;
 	this.currentUIMode = undefined;
 
 	this.uiElements = {};
+	this.hasUIElements = undefined;
 	this.uiShapes = {};
-	this.selectedUIShapes = {};
+	this.hasUIShapes = undefined;
+	this.uiShapesSelected = {};
+	this.hasUIShapesSelected = undefined;
+	this.activeShapes = [];
+	this.hasActiveShapes = undefined;
+	this.uiGroups = [];
 
 
 	this.manageObjectPropertiesDefault = function( objPropsDefault ){
@@ -108,8 +115,10 @@ var UIManager = (function() {
 
 		removeUIElements : function( elements ){
 
-			//TODO loop over uiElements
-			delete uiElements[ elements ];
+			for( element in elements ){
+
+                delete elements[ element ];
+			}
 		},
 
 		getUIElement : function( element ){
@@ -117,10 +126,14 @@ var UIManager = (function() {
 			return uiElements[ element ];
 		},
 
-//FIXME
 		getUIElements : function(){
 
             return uiElements;
+        },
+
+        hasUIElements : function(){
+
+            return Object.keys( uiElements ).length > 0 ? true : false;
         },
 
 		//UIShapes
@@ -144,25 +157,35 @@ var UIManager = (function() {
 			delete uiShapes[ shape ];
 		},
 
+        hasUIShapes : function(){
+
+            return Object.keys( uiShapes ).length > 0 ? true : false;
+        },
+
         //SelectedUIShapes
         getSelectedUIShape : function( shape ){
 
-            return selectedUIShapes[ shape ];
+            return uiShapesSelected[ shape ];
         },
 
         getSelectedUIShapes : function(){
 
-            return selectedUIShapes;
+            return Object.keys( uiShapesSelected ).length > 0 ? uiShapesSelected : new Error("No Shapes Selected" ).message;
         },
 
         addSelectedUIShape : function( shape ){
 
-            selectedUIShapes[ shape ] = shape;
+            uiShapesSelected[ shape.getID() ] = shape;
         },
 
         removeSelectedUIShape : function( shape ){
 
-            delete selectedUIShapes[ shape ];
+            delete uiShapesSelected[ shape ];
+        },
+
+        hasUIShapesSelected : function(){
+
+            return Object.keys( uiShapesSelected ).length > 0 ? true : false;
         },
 
 		//ObjectPropertiesDefault

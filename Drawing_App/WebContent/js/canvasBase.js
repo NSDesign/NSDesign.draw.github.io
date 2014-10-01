@@ -95,6 +95,8 @@ function CanvasBase( id, element, elementName, displayName, objectName, uiManage
 
     this.gridSize;
     this.centroid;
+
+    this.isRendering = false;
 };
 
 CanvasBase.prototype = Object.create( Module_Base.getModule().prototype );
@@ -106,8 +108,8 @@ CanvasBase.prototype.getCentroid = function(){
 
     return this.centroid = {
 
-        x : this.element.width / 2,
-        y : this.element.height / 2
+        x : this.canvas.width / 2,
+        y : this.canvas.height / 2
     };
 };
 
@@ -157,3 +159,11 @@ CanvasBase.prototype.getCanvasHeight = function(){
     return Number( this.canvas.height );
 };
 
+CanvasBase.prototype.setIsRendering = function( r ){
+
+    this.isRendering = r;
+};
+CanvasBase.prototype.getIsRendering = function(){
+
+    return this.isRendering;
+};

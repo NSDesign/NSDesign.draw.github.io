@@ -226,30 +226,15 @@ canvas{}
 
 #Canvas_Draw{
 
-	border : 2px solid red;
+	/*border : 2px solid red;*/
 	z-index : 0;
 }
 
-#Canvas_Adorners{
 
-	left : 304px;
-	border : 2px solid green;
-	z-index : 1;
-	pointer-events : none;
-}
-
-/*
-#Canvas_Selection{
-
-	left : 608px;
-	border : 2px solid blue;
-	z-index : 2;
-}
-*/
 
 #Canvas_Grid{
 
-	border : 2px solid black;
+	/*border : 2px solid black;*/
 	z-index : -1;
 }
 
@@ -263,3 +248,20 @@ canvas{}
 	pointer-events : auto;
 }
 
+/*
+#Canvas_Adorners{
+
+	left : 304px;
+	border : 2px solid green;
+	z-index : 1;
+	pointer-events : none;
+}
+
+
+#Canvas_Selection{
+
+	left : 608px;
+	border : 2px solid blue;
+	z-index : 2;
+}
+*/

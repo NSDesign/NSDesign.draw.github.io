@@ -5,36 +5,36 @@ SubModules = {
 
 
 var DrawingApplication = {
-	
+
 	MainModule : new (function( modules ) {
-		
+
 		//console.log( this, modules );
-		
+
 		var privateVar, privateMethod;
-		
+
 		privateVar = 0;
-		
+
 		privateMethod = function( foo ) {
-			
-			
+
+
 		};
-		
-		
+
+
 		return{
-			
+
 			publicVar : "Public Var",
-			
+
 			publicMethod : (function (){
-				
+
 				privateVar++;
-				
+
 				privateMethod( "bar" );
-				
+
 			})()
 		};
-		
+
 	})(SubModules),
-	
+
 };
 
 
@@ -43,16 +43,16 @@ var DrawingApplication = {
 
 
 //var MA = (function(){
-	
-	
+
+
 //})();
 
 var MB = (function(){
-	
+
 	var B = function (a){
 		this.a = a;
 		this.b = a;
-		this.c = function C(b){ 
+		this.c = function C(b){
 						this.b = b;
 					};
 		return this;
@@ -68,11 +68,11 @@ var MB = (function(){
 })();
 
 
-	
+
 function A(){
 
 	MB.gB().call(this, "HI");
-	
+
 };
 //console.log(MB.gB("YEP"));
 A.prototype = Object.create(MB.gB().prototype);
@@ -85,13 +85,13 @@ var AB = new A();
 
 /*//Get Set looks like error but works fine
 var o = {
-	
-	a: 7, 
-	
+
+	a: 7,
+
 	get get() {
 		return this.a + 1;
 	},
-	
+
 	set set(x) {
 		this.a = x / 2;
 	}
@@ -123,5 +123,30 @@ Object.defineProperty(person, 'fullName', {
 
 //console.log(o.a, o.set = 15, o.get);
 
+var obj = {};
+        Object.defineProperty( obj, "value", { value: true, writable: false, enumerable: true, configurable: true });
 
+        (function(){
+            var name = "John";
+            Object.defineProperty( obj, "name", {
+                get: function(){ return name; },
+                set: function(value){ name = value; }
+                });
+        })();
+
+        console.log( obj.value ); // true
+        console.log( obj.name ); // John
+        obj.name = "Ted";
+        console.log( obj.name ); // Ted
+
+        for ( var prop in obj ) {
+            console.log( prop );
+        }
+        // value
+        // name
+
+        obj.value = false; // Exception if in strict mode Object.defineProperty( obj, "value", { writable: true, configurable: false });
+
+        obj.value = false;
+        console.log( obj.value ); // false delete obj.value; // Exception
 

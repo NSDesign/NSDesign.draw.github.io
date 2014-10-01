@@ -5,21 +5,21 @@
 //TODO
 //Add Tool Default Properties Object
 //To all Tools
-	
+
 Module_Base.Tools = (function(){
 
 	var tools = {
 
 		selectObject : {
-	
+
 			id : 0,
 			longName : "Select Object",
 			shortName : "Sel Obj",
 			shortCut : "Q",
 			state : "unselected",
-	
+
 			objectPropertiesDefault : {
-				
+
 				autoSelect : {
 					label : "auto Select",
 					control : "input",
@@ -30,7 +30,7 @@ Module_Base.Tools = (function(){
 					bindProperty : "setAutoSelect",
 					isFunction : true
 				},
-				
+
 				displayHandles : {
 					label : "display Handles",
 					control : "input",
@@ -42,7 +42,7 @@ Module_Base.Tools = (function(){
 					isFunction : true
 				},
 			},
-	
+
 			iconNormal : {
 				x : 0,
 				y : 0
@@ -62,15 +62,15 @@ Module_Base.Tools = (function(){
 		},
 
 		selectElement : {
-	
+
 			id : 1,
 			longName : "Select Element",
 			shortName : "Sel Ele",
 			shortCut : "W",
 			state : "unselected",
-	
+
 			objectPropertiesDefault : {
-				
+
 				selectPoint : {
 					label : "select Point",
 					control : "input",
@@ -82,7 +82,7 @@ Module_Base.Tools = (function(){
 					bindProperty : "setSelectPoint",
 					isFunction : true
 				},
-				
+
 				selectSegment : {
 					label : "select Segment",
 					control : "input",
@@ -94,7 +94,7 @@ Module_Base.Tools = (function(){
 					bindProperty : "setSelectSegment",
 					isFunction : true
 				},
-				
+
 				selectBoth : {
 					label : "select Both",
 					control : "input",
@@ -107,7 +107,7 @@ Module_Base.Tools = (function(){
 					isFunction : true
 				},
 			},
-	
+
 			iconNormal : {
 				x : 0,
 				y : -50
@@ -127,15 +127,15 @@ Module_Base.Tools = (function(){
 		},
 
 		createRectangle : {
-	
+
 			id : 2,
 			longName : "Create Rectangle",
 			shortName : "Cre Rec",
 			shortCut : "R",
 			state : "unselected",
-	
+
 			objectPropertiesDefault : {
-				
+
 				fromCenter : {
 					label : "from Center",
 					control : "input",
@@ -146,7 +146,7 @@ Module_Base.Tools = (function(){
 					bindProperty : "setFromCenter",
 					isFunction : true
 				},
-				
+
 				width : {
 					label : "width",
 					control : "input",
@@ -156,7 +156,7 @@ Module_Base.Tools = (function(){
 					bindElement : this,
 					bindProperty : "width"
 				},
-				
+
 				height : {
 					label : "height",
 					control : "input",
@@ -166,25 +166,25 @@ Module_Base.Tools = (function(){
 					bindElement : this,
 					bindProperty : "width"
 				},
-				
+
 				fillColour : {
 					label : "fill Colour",
 					control : "input",
 					type : "color",
-					value : "#FF",
+					value : "rgba( 255, 0, 0, 0.5 )",
 					bindElement : this,
 					bindProperty : "color"
 				},
-				
+
 				strokeColour : {
 					label : "stroke Colour",
 					control : "input",
 					type : "color",
-					value : "#FF",
+					value : "#FF0000",
 					bindElement : this,
 					bindProperty : "color"
 				},
-				
+
 				strokeWeight : {
 					label : "stroke Weight",
 					control : "input",
@@ -194,9 +194,9 @@ Module_Base.Tools = (function(){
 					bindElement : this,
 					bindProperty : "strokeWeight"
 				},
-				
+
 			},
-	
+
 			iconNormal : {
 				x : 0,
 				y : -100
@@ -216,17 +216,17 @@ Module_Base.Tools = (function(){
 		},
 
 		createEllipse : {
-	
+
 			id : 3,
 			longName : "Create Ellipse",
 			shortName : "Cre Eli",
 			shortCut : "E",
 			state : "unselected",
-	
+
 			objectPropertiesDefault : {
-	
+
 			},
-	
+
 			iconNormal : {
 				x : 0,
 				y : -150
@@ -246,17 +246,17 @@ Module_Base.Tools = (function(){
 		},
 
 		createLine : {
-	
+
 			id : 4,
 			longName : "Create Line",
 			shortName : "Cre Lin",
 			shortCut : "L",
 			state : "unselected",
-	
+
 			objectPropertiesDefault : {
-	
+
 			},
-	
+
 			iconNormal : {
 				x : 0,
 				y : -200
@@ -276,17 +276,17 @@ Module_Base.Tools = (function(){
 		},
 
 		createCurve : {
-	
+
 			id : 5,
 			longName : "Create Curve",
 			shortName : "Cre Crv",
 			shortCut : "T",
 			state : "unselected",
-	
+
 			objectPropertiesDefault : {
-	
+
 			},
-	
+
 			iconNormal : {
 				x : 0,
 				y : -250
@@ -305,18 +305,18 @@ Module_Base.Tools = (function(){
 			},
 		},
 
-		createLText : {
-	
+		createText : {
+
 			id : 6,
 			longName : "Create Text",
 			shortName : "Cre Txt",
 			shortCut : "Y",
 			state : "unselected",
-	
+
 			objectPropertiesDefault : {
-	
+
 			},
-	
+
 			iconNormal : {
 				x : 0,
 				y : -300
@@ -336,17 +336,17 @@ Module_Base.Tools = (function(){
 		},
 
 		canvasZoom : {
-	
+
 			id : 7,
 			longName : "Canvas Zoom",
 			shortName : "Cvs Zom",
 			shortCut : "Z",
 			state : "unselected",
-	
+
 			objectPropertiesDefault : {
-	
+
 			},
-	
+
 			iconNormal : {
 				x : 0,
 				y : -350
@@ -366,17 +366,17 @@ Module_Base.Tools = (function(){
 		},
 
 		canvasPan : {
-	
+
 			id : 8,
 			longName : "Canvas Pan",
 			shortName : "Cvs Pan",
 			shortCut : "P",
 			state : "unselected",
-	
+
 			objectPropertiesDefault : {
-	
+
 			},
-	
+
 			iconNormal : {
 				x : 0,
 				y : -400
@@ -395,14 +395,14 @@ Module_Base.Tools = (function(){
 			},
 		},
 	};
-	
+
 	return{
-		
+
 		getTools : function(){
-			
+
 			return tools;
 		},
-		
+
 		getTool : function( tool ){
 
 			return tools[ tool ];
